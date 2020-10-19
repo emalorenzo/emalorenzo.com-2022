@@ -1,7 +1,8 @@
 {
   "name": "emalorenzo.com",
   "version": "0.1.0",
-  "private": true,
+  "author": "Emanuel Lorenzo <aemalorenzo@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

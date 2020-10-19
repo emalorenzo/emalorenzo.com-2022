@@ -21,6 +21,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     // eslint react rules (github.com/yannickcr/eslint-plugin-react)
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',

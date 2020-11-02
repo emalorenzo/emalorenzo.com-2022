@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint --fix .",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc.js"
+    "start": "next start"
   },
   "husky": {
     "hooks": {
@@ -16,9 +14,7 @@
     }
   },
   "lint-staged": {
-    "./**/*.{js,jsx,ts,tsx}": [
-      "npm run lint"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
     "next": "9.5.5",

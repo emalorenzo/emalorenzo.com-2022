@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import Api from 'api';
 import styles from '../styles/Home.module.css';
 
-const Home: React.FC = ({ posts }) => {
+const Home: React.FC = ({ posts }: any) => {
   console.log('posts', posts);
   return (
     <div className={styles.container}>

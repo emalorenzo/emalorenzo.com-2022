@@ -25,23 +25,17 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    // Prettier plugin
+    // accessibility plugin
+    'plugin:jsx-a11y/recommended',
+
+    // prettier plugin here disables ESLint rules related to code styling that may disagree with prettierrc rules
+    // it only turn off rules so it needs to always be at the bottom
     'prettier',
     'prettier/@typescript-eslint',
     'prettier/react',
-    // accessibility plugin
-    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
   ],
   rules: {
-    // With this we don't need Prettier plugin since we let eslint manage .prettierrc.js rules
-    'prettier/prettier': [
-      'error',
-      {},
-      {
-        usePrettierrc: true,
-      },
-    ],
-
     // Next.js doesn't require react in scope
     'react/react-in-jsx-scope': 'off',
 
@@ -64,16 +58,8 @@ module.exports = {
     'import/extensions': 'off',
     'react/jsx-props-no-spreading': ['error', { custom: 'ignore' }],
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': ['warn'],
   },
-  overrides: [
-    {
-      // enable the rule specifically for TypeScript files
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/explicit-module-boundary-types': ['warn'],
-      },
-    },
-  ],
   plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
   settings: {
     react: {

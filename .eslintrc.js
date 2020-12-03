@@ -58,7 +58,9 @@ module.exports = {
     'import/extensions': 'off',
     'react/jsx-props-no-spreading': ['error', { custom: 'ignore' }],
     'import/prefer-default-export': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': ['warn'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'no-console': 'off',
+    'consistent-return': 'off',
   },
   plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
   settings: {

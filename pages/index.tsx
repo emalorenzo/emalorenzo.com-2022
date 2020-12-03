@@ -1,17 +1,16 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
-import Api from 'api';
-import styles from '../styles/Home.module.css';
+import * as PostsApi from 'api/posts';
+import { Layout } from 'components';
 
-const Home: React.FC = ({ posts }: any) => {
-  console.log('posts', posts);
+const Home: React.FC = ({ allPosts, preview }) => {
+  console.log(allPosts, preview);
   return (
-    <div className={styles.container}>
+    <Layout preview={preview}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Ema Lorenzo</title>
       </Head>
-      {posts.map(
+      {allPosts.map(
         ({ _id, title = '', slug = '', _updatedAt = '' }) =>
           slug && (
             <li key={_id}>
@@ -22,23 +21,15 @@ const Home: React.FC = ({ posts }: any) => {
             </li>
           )
       )}
-    </div>
+    </Layout>
   );
 };
 
 export default Home;
 
-export async function getStaticProps() {
-  const query = `*[_type == "post"] | order(_createdAt desc) {
-    ...,
-    'slug': slug.current,
-    'categories': categories[]->.title
-  }`;
-  const posts = await Api.fetch(query);
+export async function getStaticProps({ preview = false }) {
+  const allPosts = await PostsApi.getAllPostsForHome(preview);
   return {
-    props: {
-      posts,
-    },
-    revalidate: 1, // In seconds
+    props: { allPosts, preview },
   };
 }

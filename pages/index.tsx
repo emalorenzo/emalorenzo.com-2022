@@ -32,5 +32,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const allPosts = await PostsApi.getAllPostsForHome(preview);
   return {
     props: { allPosts, preview },
+    revalidate: 1, // In seconds
   };
 };

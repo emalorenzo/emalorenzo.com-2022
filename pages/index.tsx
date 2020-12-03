@@ -1,9 +1,10 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import * as PostsApi from 'api/posts';
 import { Layout } from 'components';
 
-const Home: React.FC = ({ allPosts, preview }) => {
+const Home: React.FC = ({ allPosts, preview }: any) => {
   console.log(allPosts, preview);
   return (
     <Layout preview={preview}>
@@ -27,9 +28,9 @@ const Home: React.FC = ({ allPosts, preview }) => {
 
 export default Home;
 
-export async function getStaticProps({ preview = false }) {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const allPosts = await PostsApi.getAllPostsForHome(preview);
   return {
     props: { allPosts, preview },
   };
-}
+};

@@ -9,7 +9,7 @@ import * as PostsApi from 'api/posts';
 const MotionHeading = motion.custom(Heading);
 const MotionFlex = motion.custom(Flex);
 
-const Post: NextPage = ({ post, morePosts, preview }) => {
+const Post: NextPage = ({ post, morePosts, preview }: any) => {
   console.log(`post: ${post}`);
   const router = useRouter();
   return (

@@ -2,7 +2,7 @@ import { extendTheme } from '@chakra-ui/react';
 
 const config = {
   useSystemColorMode: false,
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
 };
 
 const styles = {
@@ -15,7 +15,7 @@ const styles = {
       color: props.colorMode === 'dark' ? 'teal.300' : 'teal.500',
     },
     li: {
-      'list-style': 'none',
+      listStyle: 'none',
     },
     main: {
       flex: 1,
@@ -33,9 +33,9 @@ const colors = {
 };
 
 const fonts = {
-  body: 'system-ui, sans-serif',
-  heading: 'Georgia, serif',
-  mono: 'Menlo, monospace',
+  body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  heading: `'Poppins', sans-serif`,
+  // mono: 'Menlo, monospace',
 };
 
 export const theme = extendTheme({

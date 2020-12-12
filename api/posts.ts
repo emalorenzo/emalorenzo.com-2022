@@ -49,6 +49,7 @@ export async function getAllPostsForHome(preview) {
 }
 
 export async function getPostAndMorePosts(slug, preview) {
+  console.log(slug, preview);
   const curClient = getClient(preview);
   const [post, morePosts] = await Promise.all([
     curClient

@@ -61,6 +61,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-console': 'off',
     'consistent-return': 'off',
+    'no-underscore-dangle': 'off',
   },
   plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
   settings: {

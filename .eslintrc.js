@@ -62,6 +62,8 @@ module.exports = {
     'no-console': 'off',
     'consistent-return': 'off',
     'no-underscore-dangle': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
   },
   plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
   settings: {

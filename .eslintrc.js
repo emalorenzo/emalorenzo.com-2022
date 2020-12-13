@@ -64,6 +64,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
   settings: {

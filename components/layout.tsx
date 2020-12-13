@@ -7,7 +7,9 @@ export const Layout = ({ preview, children }) => (
   <Flex direction="column" minH="100vh">
     {preview && <PreviewAlert />}
     <Header />
-    <Flex as="main">{children}</Flex>
+    <Flex as="main" mt="77px">
+      {children}
+    </Flex>
     <Footer />
   </Flex>
 );

@@ -1,15 +1,11 @@
 import { Flex } from '@chakra-ui/react';
 import { Footer } from './footer';
 import { Header } from './header';
-import { PreviewAlert } from './previewAlert';
 
-export const Layout = ({ preview, children }) => (
-  <Flex direction="column" minH="100vh">
-    {preview && <PreviewAlert />}
+export const Layout = ({ children }) => (
+  <Flex direction="column" height="100vh">
     <Header />
-    <Flex as="main" mt="77px">
-      {children}
-    </Flex>
+    {children}
     <Footer />
   </Flex>
 );

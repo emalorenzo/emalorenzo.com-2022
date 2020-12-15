@@ -7,53 +7,8 @@ import * as PostsApi from 'api/posts';
 import { Flex, Heading, Text, Button, Link, Box } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { Layout } from 'components';
-import { useInterval } from 'hooks';
-
 const MotionHeading = motion.custom(Heading);
 const MotionFlex = motion.custom(Flex);
-
-const EMOJIS = [
-  '👨🏻‍💻',
-  '👨‍🏫',
-  '🧔🏻',
-  '🥷',
-  '👨‍🎨',
-  '🏃',
-  '🧎',
-  '🤌🏻',
-  '🙌🏻',
-  '🤘🏻',
-  '🙏🏻',
-  '⚡️',
-  '❄️',
-  '🎮',
-  '🤼‍♂️',
-  '🪂',
-  '🤿',
-  '🎣',
-  '🏓',
-  '🎭',
-  '🏯',
-  '⚔️',
-  '✍🏻',
-  '👃🏻',
-  '👷🏻‍♂️',
-  '🚵🏼',
-  '👨🏼‍🚀',
-  '🏊🏼‍♂️',
-  '🛠',
-  '🧘🏼‍♂️',
-  '👾',
-  '😏',
-  '😎',
-  '😌',
-  '🤖',
-  '👨‍🏭',
-  '🦖',
-  '🔥',
-  '❓',
-];
 
 const Post = ({ post }) => {
   const { title = '', slug = '', _updatedAt = '' } = post;
@@ -94,65 +49,52 @@ const Post = ({ post }) => {
 };
 
 const Home: NextPage = ({ allPosts, preview }: any) => {
-  const [emojiIndex, setEmojiIndex] = React.useState(0);
-  const [emojiDelay, setEmojiDelay] = React.useState(1000);
-
-  // console.log(emojiIndex, EMOJIS.length - 1);
-
-  // if (emojiIndex < EMOJIS.length - 1) {
-  //   const newIndex = emojiIndex + 1;
-  //   console.log('arriba', newIndex);
-  //   setEmojiIndex(newIndex);
-  // }
-
-  // Increment emoji index
-  useInterval(() => {
-    if (emojiIndex < EMOJIS.length - 1) {
-      setEmojiIndex(emojiIndex + 1);
-    } else {
-      setEmojiDelay(null);
-    }
-  }, emojiDelay);
-
-  // Make it faster every second!
-  useInterval(() => {
-    if (emojiDelay > 10) {
-      setEmojiDelay(emojiDelay / 2);
-    }
-  }, 3000);
-
   return (
-    <Layout preview={preview}>
+    <Flex
+      as="main"
+      direction="column"
+      overflowY="scroll"
+      align="stretch"
+      position="relative"
+      top="-1px"
+    >
       <Head>
         <title>Ema Lorenzo</title>
       </Head>
-      <Flex direction="column" w="100%">
-        <Flex
-          py={8}
-          px={16}
-          direction="column"
-          mb={160}
-          borderBottomWidth={1}
-          borderColor="gray.300"
-        >
+      <Flex direction="column" bg="white">
+        {/* hero */}
+        <Flex py={160} px={16} direction="column">
           <Text as="h1" fontSize="2rem">
             Hey,
           </Text>
           <Box display="inline">
             <Text fontSize="1.5rem">
-              Soy {EMOJIS[emojiIndex]} basado en 🇦🇷. <br />
+              Soy basado en 🇦🇷. <br />
               Este es mi espacio donde comparto lo que aprendo
             </Text>
           </Box>
         </Flex>
+
+        {/* border bottom */}
+        <Box
+          position="sticky"
+          height="1px"
+          top={0}
+          bg="gray.300"
+          width="full"
+        />
+
+        {/* posts */}
         <Flex direction="column" px={32}>
-          <Heading as="h2">Ultimas publicaciones</Heading>
+          <Heading as="h2" mt={20}>
+            Ultimas publicaciones
+          </Heading>
           {allPosts.map((post) => {
             return post.slug && <Post key={post.slug} post={post} />;
           })}
         </Flex>
       </Flex>
-    </Layout>
+    </Flex>
   );
 };
 

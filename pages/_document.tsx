@@ -3,7 +3,7 @@ import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 class Document extends NextDocument {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="es">
         <Head>
           <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />

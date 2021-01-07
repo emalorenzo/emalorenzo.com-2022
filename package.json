@@ -22,6 +22,7 @@
     "@emotion/styled": "^11.0.0",
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
+    "date-fns": "^2.16.1",
     "framer-motion": "^2.9.5",
     "next": "^10.0.0",
     "next-google-fonts": "^1.2.1",

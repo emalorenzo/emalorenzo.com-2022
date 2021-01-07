@@ -58,6 +58,7 @@ const Hero = () => {
       setEmojiDelay(emojiDelay / 2);
     }
   }, 3000);
+
   return (
     <Flex py={8} px={16} direction="column" mb={160}>
       <Text as="h1" fontSize="2rem">
@@ -83,7 +84,7 @@ export const Header = () => {
       borderColor="gray.200"
       borderBottomWidth={1}
     >
-      <Box as="nav" py={4} px={16} zIndex="banner">
+      <Box as="nav" py={4} px={16}>
         <Flex as="ul" justify="flex-end" align="center">
           <Heading as="h3" fontSize="1.5rem" mr="auto">
             EL

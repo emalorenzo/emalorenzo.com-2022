@@ -18,7 +18,7 @@ const postFields = `
   excerpt,
   'slug': slug.current,
   'coverImage': coverImage.asset->url,
-  'categories': categories[]->.title
+  'categories': categories[]->.title,
 `;
 
 const getClient = (preview) => (preview ? previewClient : client);
@@ -51,23 +51,24 @@ export async function getAllPostsForHome(preview) {
 export async function getPostAndMorePosts(slug, preview) {
   console.log(slug, preview);
   const curClient = getClient(preview);
-  const [post, morePosts] = await Promise.all([
-    curClient
-      .fetch(
-        `*[_type == "post" && slug.current == $slug] | order(_updatedAt desc) {
-        ${postFields}
-        content,
-      }`,
-        { slug }
-      )
-      .then((res) => res?.[0]),
-    curClient.fetch(
-      `*[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc){
-        ${postFields}
-        content,
-      }[0...2]`,
-      { slug }
-    ),
-  ]);
-  return { post, morePosts: getUniquePosts(morePosts) };
+
+  const [post] = await curClient.fetch(
+    `*[_type == "post" && slug.current == $slug] | order(_updatedAt desc) {
+      ${postFields}
+      content,
+    }`,
+    { slug }
+  );
+
+  const nextPosts = await curClient.fetch(
+    `*[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc){
+          ${postFields}
+          content,
+        }[0...2]`,
+    { slug }
+  );
+
+  console.log(`post: ${post} - nextPosts: ${nextPosts}`);
+
+  return { post, nextPosts: getUniquePosts(nextPosts) };
 }

@@ -12,7 +12,14 @@ const MotionFlex = motion.custom(Flex);
 
 const HeaderItem = ({ isSelected, children, url }) => (
   <NextLink href={url}>
-    <Box as="a" position="relative" cursor="pointer" mr={4}>
+    <MotionBox
+      as="a"
+      position="relative"
+      cursor="pointer"
+      mr={4}
+      layoutId={url}
+      // bg="white"
+    >
       {isSelected && (
         <MotionBox
           layoutId="underline"
@@ -35,7 +42,7 @@ const HeaderItem = ({ isSelected, children, url }) => (
       >
         {children}
       </Text>
-    </Box>
+    </MotionBox>
   </NextLink>
 );
 
@@ -80,6 +87,7 @@ export const Header = ({ scroll }) => {
 
   const fontSize = useTransform(scroll, [0, 0.1], ['5rem', '2rem']);
   const paddingTop = useTransform(scroll, [0, 0.1], ['10rem', '0rem']);
+  console.log('section', section);
   return (
     <MotionFlex
       as="header"
@@ -95,18 +103,26 @@ export const Header = ({ scroll }) => {
             EL
           </Heading>
           <AnimateSharedLayout>
-            <HeaderItem url="/" isSelected={!section}>
-              Home
-            </HeaderItem>
-            <HeaderItem url="/blog" isSelected={section === 'blog'}>
-              Blog
-            </HeaderItem>
-            <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
-              Snippets
-            </HeaderItem>
-            <HeaderItem url="/histories" isSelected={section === 'histories'}>
-              Historias
-            </HeaderItem>
+            {!!section && (
+              <HeaderItem url="/" isSelected={!section}>
+                Home
+              </HeaderItem>
+            )}
+            {(!section || section === 'blog') && (
+              <HeaderItem url="/blog" isSelected={section === 'blog'}>
+                Blog
+              </HeaderItem>
+            )}
+            {(!section || section === 'snippets') && (
+              <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
+                Snippets
+              </HeaderItem>
+            )}
+            {(!section || section === 'histories') && (
+              <HeaderItem url="/histories" isSelected={section === 'histories'}>
+                Historias
+              </HeaderItem>
+            )}
           </AnimateSharedLayout>
           <motion.p style={{ fontSize, paddingTop }}>{title}</motion.p>
         </Flex>

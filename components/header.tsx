@@ -2,7 +2,12 @@ import React from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Flex, Text, Box, Heading } from '@chakra-ui/react';
-import { motion, useTransform, AnimateSharedLayout } from 'framer-motion';
+import {
+  motion,
+  useTransform,
+  AnimateSharedLayout,
+  AnimatePresence,
+} from 'framer-motion';
 
 import { EMOJIS } from 'data/emojis';
 import { useInterval, useHeader } from 'hooks';
@@ -95,6 +100,7 @@ export const Header = ({ scroll }) => {
       borderColor="gray.200"
       borderBottomWidth={1}
       layoutId="pepe"
+      overflowY="hidden"
     >
       <Box as="nav" py={4} px={16}>
         <Flex as="ul" justify="flex-start" align="center">
@@ -104,7 +110,7 @@ export const Header = ({ scroll }) => {
           <AnimateSharedLayout>
             {!!section && (
               <HeaderItem url="/" isSelected={!section}>
-                Home
+                Back Home
               </HeaderItem>
             )}
             {(!section || section === 'blog') && (
@@ -123,7 +129,23 @@ export const Header = ({ scroll }) => {
               </HeaderItem>
             )}
           </AnimateSharedLayout>
-          <motion.p style={{ fontSize, paddingTop }}>{title}</motion.p>
+          <AnimatePresence>
+            {title && (
+              <motion.p
+                style={{ fontSize, paddingTop }}
+                // layoutId="title"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 100, opacity: 0 }}
+                transition={{ type: 'tween', delay: 0.2 }}
+              >
+                {title}
+              </motion.p>
+            )}
+          </AnimatePresence>
+          {/* <motion.p style={{ fontSize, paddingTop }} layoutId="title">
+            {title}
+          </motion.p> */}
         </Flex>
       </Box>
     </MotionFlex>

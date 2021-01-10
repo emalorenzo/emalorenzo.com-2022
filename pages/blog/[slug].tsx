@@ -10,7 +10,7 @@ import { useHeader } from 'hooks';
 import { Fallback, MXDComponents } from 'components';
 import { PostLayout } from 'layouts';
 
-const Post: NextPage = ({ post, preview }: any) => {
+const Post: NextPage = ({ post = {}, preview }: any) => {
   const { mdxContent, title = '', ...rest } = post;
 
   const router = useRouter();

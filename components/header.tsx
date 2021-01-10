@@ -13,7 +13,6 @@ const MotionFlex = motion.custom(Flex);
 const HeaderItem = ({ isSelected, children, url }) => (
   <NextLink href={url}>
     <MotionBox
-      as="a"
       position="relative"
       cursor="pointer"
       mr={4}

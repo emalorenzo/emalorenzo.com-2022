@@ -1,4 +1,6 @@
-import client, { previewClient } from '../lib/sanity';
+import renderToString from 'next-mdx-remote/render-to-string';
+import { Callout } from 'components';
+import client, { previewClient } from 'lib/sanity';
 
 const getUniquePosts = (posts) => {
   const slugs = new Set();
@@ -44,12 +46,10 @@ export async function getAllPostsForHome(preview) {
     .fetch(`*[_type == "post"] | order(_createdAt desc, _updatedAt desc){
       ${postFields}
     }`);
-  console.log('results', results);
   return getUniquePosts(results);
 }
 
-export async function getPostAndMorePosts(slug, preview) {
-  console.log(slug, preview);
+export async function getPost(slug, preview) {
   const curClient = getClient(preview);
 
   const [post] = await curClient.fetch(
@@ -60,15 +60,10 @@ export async function getPostAndMorePosts(slug, preview) {
     { slug }
   );
 
-  const nextPosts = await curClient.fetch(
-    `*[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc){
-          ${postFields}
-          content,
-        }[0...2]`,
-    { slug }
-  );
+  const { content, ...meta } = post;
+  const mdxContent = await renderToString(content, {
+    components: { Callout },
+  });
 
-  console.log(`post: ${post} - nextPosts: ${nextPosts}`);
-
-  return { post, nextPosts: getUniquePosts(nextPosts) };
+  return { mdxContent, ...meta };
 }

@@ -11,7 +11,6 @@ const MotionFlex = motion.custom(Flex);
 export const PostCard = ({ post }) => {
   const { title = '', slug = '', coverImage, excerpt } = post;
   const image = imageBuilder.image(coverImage).height(200).width(300).url();
-  console.log('post', post);
   return (
     <MotionFlex
       direction="row"

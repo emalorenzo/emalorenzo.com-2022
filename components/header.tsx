@@ -2,10 +2,15 @@ import React from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Flex, Text, Box, Heading, Divider } from '@chakra-ui/react';
-import { motion, AnimateSharedLayout } from 'framer-motion';
+import {
+  motion,
+  useViewportScroll,
+  useTransform,
+  AnimateSharedLayout,
+} from 'framer-motion';
 
 import { EMOJIS } from 'data/emojis';
-import { useInterval } from 'hooks';
+import { useInterval, useHeader } from 'hooks';
 
 const MotionBox = motion.custom(Box);
 
@@ -74,34 +79,49 @@ const Hero = () => {
   );
 };
 
-export const Header = () => {
-  const { pathname } = useRouter();
+export const Header = ({ scroll = '0' }) => {
+  const { section, title } = useHeader();
+  // const { scrollYProgress } = useViewportScroll();
+  // const scale = useTransform(scrollYProgress, [0, 0.2], ['5rem', '2rem']);
+
   return (
     <Flex
       as="header"
       direction="column"
       width="full"
+      // h="100%"
+      // flex={1}
       borderColor="gray.200"
       borderBottomWidth={1}
+      // position="fixed"
+      // top={0}
     >
       <Box as="nav" py={4} px={16}>
-        <Flex as="ul" justify="flex-end" align="center">
-          <Heading as="h3" fontSize="1.5rem" mr="auto">
+        <Flex as="ul" justify="flex-start" align="center">
+          <Heading as="h3" fontSize="1.5rem" mr={8}>
             EL
           </Heading>
           <AnimateSharedLayout>
-            <HeaderItem url="/" isSelected={pathname === '/'}>
+            <HeaderItem url="/" isSelected={!section}>
               Home
             </HeaderItem>
-            <HeaderItem url="/blog" isSelected={pathname === '/blog'}>
+            <HeaderItem url="/blog" isSelected={section === 'blog'}>
               Blog
             </HeaderItem>
-            <HeaderItem url="/histories" isSelected={pathname === '/histories'}>
+            <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
+              Snippets
+            </HeaderItem>
+            <HeaderItem url="/histories" isSelected={section === 'histories'}>
               Historias
             </HeaderItem>
           </AnimateSharedLayout>
+          <motion.p style={{ fontSize: '10rem', padding: 20 }}>
+            {title}
+          </motion.p>
         </Flex>
       </Box>
     </Flex>
   );
 };
+
+// export const Header = React.forwardRef(HeaderComponent);

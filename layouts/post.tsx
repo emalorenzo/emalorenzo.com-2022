@@ -8,7 +8,14 @@ import { PreviewAlert } from 'components';
 export const PostLayout = ({ post, preview }) => {
   const { content, title, categories } = post;
   return (
-    <Flex w="full" direction="column" alignItems="center" overflow="scroll">
+    <Flex
+      w="full"
+      direction="column"
+      alignItems="center"
+      overflow="scroll"
+      width="50%"
+      marginX="auto"
+    >
       {preview && <PreviewAlert />}
 
       <Flex w={20} h={40} position="absolute" right={5} top={5}>
@@ -16,6 +23,11 @@ export const PostLayout = ({ post, preview }) => {
       </Flex>
 
       <Flex as="article" direction="column">
+        {content}
+        {content}
+        {content}
+        {content}
+        {content}
         {content}
         {content}
         {content}

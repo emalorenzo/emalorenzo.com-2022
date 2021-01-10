@@ -1,13 +1,8 @@
 import React from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Flex, Text, Box, Heading, Divider } from '@chakra-ui/react';
-import {
-  motion,
-  useViewportScroll,
-  useTransform,
-  AnimateSharedLayout,
-} from 'framer-motion';
+import { Flex, Text, Box, Heading } from '@chakra-ui/react';
+import { motion, useTransform, AnimateSharedLayout } from 'framer-motion';
 
 import { EMOJIS } from 'data/emojis';
 import { useInterval, useHeader } from 'hooks';
@@ -79,22 +74,18 @@ const Hero = () => {
   );
 };
 
-export const Header = ({ scroll = '0' }) => {
+export const Header = ({ scroll }) => {
   const { section, title } = useHeader();
-  // const { scrollYProgress } = useViewportScroll();
-  // const scale = useTransform(scrollYProgress, [0, 0.2], ['5rem', '2rem']);
 
+  const fontSize = useTransform(scroll, [0, 0.1], ['5rem', '2rem']);
+  const paddingTop = useTransform(scroll, [0, 0.1], ['10rem', '0rem']);
   return (
     <Flex
       as="header"
       direction="column"
       width="full"
-      // h="100%"
-      // flex={1}
       borderColor="gray.200"
       borderBottomWidth={1}
-      // position="fixed"
-      // top={0}
     >
       <Box as="nav" py={4} px={16}>
         <Flex as="ul" justify="flex-start" align="center">
@@ -102,20 +93,20 @@ export const Header = ({ scroll = '0' }) => {
             EL
           </Heading>
           <AnimateSharedLayout>
-            <HeaderItem url="/" isSelected={!section}>
+            {/* <HeaderItem url="/" isSelected={!section}>
               Home
-            </HeaderItem>
+            </HeaderItem> */}
             <HeaderItem url="/blog" isSelected={section === 'blog'}>
               Blog
             </HeaderItem>
-            <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
+            {/* <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
               Snippets
             </HeaderItem>
             <HeaderItem url="/histories" isSelected={section === 'histories'}>
               Historias
-            </HeaderItem>
+            </HeaderItem> */}
           </AnimateSharedLayout>
-          <motion.p style={{ fontSize: '10rem', padding: 20 }}>
+          <motion.p style={{ fontSize, padding: 10, paddingTop }}>
             {title}
           </motion.p>
         </Flex>

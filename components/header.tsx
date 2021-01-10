@@ -8,6 +8,7 @@ import { EMOJIS } from 'data/emojis';
 import { useInterval, useHeader } from 'hooks';
 
 const MotionBox = motion.custom(Box);
+const MotionFlex = motion.custom(Flex);
 
 const HeaderItem = ({ isSelected, children, url }) => (
   <NextLink href={url}>
@@ -80,12 +81,13 @@ export const Header = ({ scroll }) => {
   const fontSize = useTransform(scroll, [0, 0.1], ['5rem', '2rem']);
   const paddingTop = useTransform(scroll, [0, 0.1], ['10rem', '0rem']);
   return (
-    <Flex
+    <MotionFlex
       as="header"
       direction="column"
       width="full"
       borderColor="gray.200"
       borderBottomWidth={1}
+      layoutId="pepe"
     >
       <Box as="nav" py={4} px={16}>
         <Flex as="ul" justify="flex-start" align="center">
@@ -93,25 +95,23 @@ export const Header = ({ scroll }) => {
             EL
           </Heading>
           <AnimateSharedLayout>
-            {/* <HeaderItem url="/" isSelected={!section}>
+            <HeaderItem url="/" isSelected={!section}>
               Home
-            </HeaderItem> */}
+            </HeaderItem>
             <HeaderItem url="/blog" isSelected={section === 'blog'}>
               Blog
             </HeaderItem>
-            {/* <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
+            <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
               Snippets
             </HeaderItem>
             <HeaderItem url="/histories" isSelected={section === 'histories'}>
               Historias
-            </HeaderItem> */}
+            </HeaderItem>
           </AnimateSharedLayout>
-          <motion.p style={{ fontSize, padding: 10, paddingTop }}>
-            {title}
-          </motion.p>
+          <motion.p style={{ fontSize, paddingTop }}>{title}</motion.p>
         </Flex>
       </Box>
-    </Flex>
+    </MotionFlex>
   );
 };
 

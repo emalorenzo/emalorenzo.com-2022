@@ -15,12 +15,9 @@ export const PostLayout = ({ post, preview }) => {
       overflow="scroll"
       width="50%"
       marginX="auto"
+      mt={20}
     >
       {preview && <PreviewAlert />}
-
-      <Flex w={20} h={40} position="absolute" right={5} top={5}>
-        <Image src="/code.png" width="full" height="full" />
-      </Flex>
 
       <Flex as="article" direction="column">
         {content}

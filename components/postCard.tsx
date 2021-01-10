@@ -28,7 +28,7 @@ export const PostCard = ({ post }) => {
       maxW="60rem"
       layoutId={`${slug}-container`}
     >
-      <NextLink href={`blog/${slug}`}>
+      <NextLink href={`blog/${slug}`} scroll>
         <Flex direction="column" flex={1} p={8}>
           <MotionHeading as="h3" fontWeight="500" fontSize="2rem" layout>
             {title}

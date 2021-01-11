@@ -1,7 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Flex, Text, Box, Heading } from '@chakra-ui/react';
+import { Flex, Text, Box, Heading, HStack } from '@chakra-ui/react';
 import {
   motion,
   useTransform,
@@ -15,40 +15,46 @@ import { useInterval, useHeader } from 'hooks';
 const MotionBox = motion.custom(Box);
 const MotionFlex = motion.custom(Flex);
 
-const HeaderItem = ({ isSelected, children, url }) => (
-  <NextLink href={url}>
-    <MotionBox
-      position="relative"
-      cursor="pointer"
-      mr={4}
-      layoutId={url}
-      // bg="white"
+const HeaderItem = ({ isSelected, children, url }) => {
+  const isHome = url === '/';
+  console.log('url', url);
+
+  const item = isHome ? (
+    <Heading as="h3" fontSize="1.5rem" p={2}>
+      {children}
+    </Heading>
+  ) : (
+    <Text
+      fontSize="1.2rem"
+      fontFamily="Coves"
+      color={isSelected ? 'accent' : 'gray.500'}
+      transition="all 0.3s ease-in-out"
+      p={2}
     >
-      {isSelected && (
-        <MotionBox
-          layoutId="underline"
-          width="full"
-          height="full"
-          position="absolute"
-          borderRadius={4}
-          borderStyle="dashed"
-          borderWidth={isSelected ? 1 : 0}
-          top={0}
-        />
-      )}
-      <Text
-        fontSize="1.2rem"
-        fontFamily="Coves"
-        color={isSelected ? 'accent' : 'gray.500'}
-        transition="all 0.3s ease-in-out"
-        p={2}
-        position="relative"
-      >
-        {children}
-      </Text>
-    </MotionBox>
-  </NextLink>
-);
+      {children}
+    </Text>
+  );
+
+  return (
+    <NextLink href={url}>
+      <MotionBox position="relative" cursor="pointer" layoutId={url}>
+        {isSelected && (
+          <MotionBox
+            layoutId="underline"
+            width="full"
+            height="full"
+            position="absolute"
+            borderRadius={4}
+            borderStyle="dashed"
+            borderWidth={isSelected ? 1 : 0}
+            top={0}
+          />
+        )}
+        {item}
+      </MotionBox>
+    </NextLink>
+  );
+};
 
 const Hero = () => {
   const { pathname } = useRouter();
@@ -89,7 +95,7 @@ const Hero = () => {
 export const Header = ({ scroll }) => {
   const { section, title } = useHeader();
 
-  const fontSize = useTransform(scroll, [0, 0.1], ['5rem', '2rem']);
+  const fontSize = useTransform(scroll, [0, 0.1], ['5rem', '1.8rem']);
   const paddingTop = useTransform(scroll, [0, 0.1], ['10rem', '0rem']);
   console.log('section', section);
   return (
@@ -99,57 +105,72 @@ export const Header = ({ scroll }) => {
       width="full"
       borderColor="gray.200"
       borderBottomWidth={1}
-      layoutId="pepe"
+      layoutId="header"
       overflowY="hidden"
     >
       <Box as="nav" py={4} px={16}>
         <Flex as="ul" justify="flex-start" align="center">
-          <Heading as="h3" fontSize="1.5rem" mr={8}>
-            EL
-          </Heading>
           <AnimateSharedLayout>
-            {!!section && (
-              <HeaderItem url="/" isSelected={!section}>
-                Back Home
-              </HeaderItem>
-            )}
-            {(!section || section === 'blog') && (
-              <HeaderItem url="/blog" isSelected={section === 'blog'}>
-                Blog
-              </HeaderItem>
-            )}
-            {(!section || section === 'snippets') && (
-              <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
-                Snippets
-              </HeaderItem>
-            )}
-            {(!section || section === 'histories') && (
-              <HeaderItem url="/histories" isSelected={section === 'histories'}>
-                Historias
-              </HeaderItem>
-            )}
+            <HeaderItem url="/" isSelected={!section}>
+              EL
+            </HeaderItem>
+            <HStack spacing={4} ml={20} position="absolute">
+              {(!section || section === 'blog') && (
+                <HeaderItem url="/blog" isSelected={section === 'blog'}>
+                  Blog
+                </HeaderItem>
+              )}
+              {(!section || section === 'snippets') && (
+                <HeaderItem url="/snippets" isSelected={section === 'snippets'}>
+                  Snippets
+                </HeaderItem>
+              )}
+              {(!section || section === 'histories') && (
+                <HeaderItem
+                  url="/histories"
+                  isSelected={section === 'histories'}
+                >
+                  Historias
+                </HeaderItem>
+              )}
+            </HStack>
           </AnimateSharedLayout>
-          <AnimatePresence>
-            {title && (
+          {title && (
+            <motion.h1
+              style={{ fontSize, paddingTop, marginLeft: '7rem' }}
+              variants={greeting}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
+              {title}
+            </motion.h1>
+          )}
+          {/* <AnimatePresence>
+            {!title && (
               <motion.p
-                style={{ fontSize, paddingTop }}
-                // layoutId="title"
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 100, opacity: 0 }}
-                transition={{ type: 'tween', delay: 0.2 }}
+                style={{ fontSize: '5rem', paddingTop }}
+                // initial={{ y: 100, opacity: 0 }}
+                // animate={{ y: 0, opacity: 1 }}
+                // exit={{ y: -200, opacity: 0 }}
+                // transition={{ type: 'tween', delay: 1 }}
+                // variants={greeting}
+                // initial="hidden"
+                // animate="show"
+                // exit="exit"
               >
-                {title}
+                Hey! Hola, soy Ema
               </motion.p>
-            )}
-          </AnimatePresence>
-          {/* <motion.p style={{ fontSize, paddingTop }} layoutId="title">
-            {title}
-          </motion.p> */}
+            )} */}
+          {/* </AnimatePresence> */}
         </Flex>
       </Box>
     </MotionFlex>
   );
 };
 
-// export const Header = React.forwardRef(HeaderComponent);
+const greeting = {
+  hidden: { y: 100, opacity: 0 },
+  show: { y: 0, opacity: 1, transition: { delay: 0.5 } },
+  exit: { y: -200, opacity: 0, transition: { delay: 0 } },
+};

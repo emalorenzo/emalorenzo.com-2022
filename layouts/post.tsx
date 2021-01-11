@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { PreviewAlert } from 'components';
 
-// const MotionHeading = motion.custom(Heading);
+const MotionHeading = motion.custom(Flex);
 
 export const PostLayout = ({ post, preview }) => {
   const { content, title, categories } = post;
@@ -19,7 +19,14 @@ export const PostLayout = ({ post, preview }) => {
     >
       {preview && <PreviewAlert />}
 
-      <Flex as="article" direction="column">
+      <MotionHeading
+        as="article"
+        direction="column"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 100, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         {content}
         {content}
         {content}
@@ -30,7 +37,7 @@ export const PostLayout = ({ post, preview }) => {
         {content}
         {content}
         {content}
-      </Flex>
+      </MotionHeading>
     </Flex>
   );
 };

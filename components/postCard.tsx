@@ -18,6 +18,10 @@ export const PostCard = ({ post }) => {
       bg="white"
       borderRadius="0.5rem"
       borderColor="gray.300"
+      _hover={{
+        borderColor: 'pink.300',
+        backgroundColor: 'pink.100',
+      }}
       borderWidth={1}
       m="1rem"
       cursor="pointer"

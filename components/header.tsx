@@ -2,7 +2,12 @@ import React from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Flex, Text, Box, Heading, HStack } from '@chakra-ui/react';
-import { motion, useTransform, AnimateSharedLayout } from 'framer-motion';
+import {
+  motion,
+  useTransform,
+  AnimateSharedLayout,
+  AnimatePresence,
+} from 'framer-motion';
 
 import { EMOJIS } from 'data/emojis';
 import { useInterval, useHeader } from 'hooks';
@@ -13,7 +18,7 @@ const MotionFlex = motion.custom(Flex);
 const titleVariants = {
   hidden: { y: 100, opacity: 0 },
   show: { y: 0, opacity: 1, transition: { delay: 0.5 } },
-  exit: { y: -200, opacity: 0, transition: { delay: 0 } },
+  exit: { y: 100, opacity: 0, transition: { delay: 0, duration: 0.5 } },
 };
 
 const HeaderItem = ({ children, url }) => {
@@ -114,17 +119,24 @@ export const Header = ({ scroll }) => {
   const paddingTop = useTransform(scroll, [0, 0.1], ['10rem', '0rem']);
   const marginLeft = useTransform(scroll, [0, 0.1], ['7rem', '20rem']);
   return (
-    <MotionFlex
-      as="header"
-      direction="column"
-      width="full"
-      borderColor="gray.200"
-      borderBottomWidth={1}
-      overflowY="hidden"
-    >
-      <Box as="nav" py={4} px={16}>
-        <Flex as="ul" justify="flex-start" align="center">
-          <AnimateSharedLayout>
+    <AnimateSharedLayout>
+      <MotionFlex
+        as="header"
+        direction="column"
+        width="full"
+        borderColor="gray.200"
+        borderBottomWidth={1}
+        overflowY="hidden"
+        layout
+      >
+        <Box as="nav" py={4} px={16}>
+          <MotionFlex
+            as="ul"
+            justify="flex-start"
+            align="center"
+            layout
+            transition={{ duration: 2 }}
+          >
             {/* header items */}
             <HeaderItem url="/">EL</HeaderItem>
 
@@ -135,20 +147,23 @@ export const Header = ({ scroll }) => {
             </HStack>
 
             {/* title */}
-          </AnimateSharedLayout>
-          {title && (
-            <motion.h1
-              style={{ fontSize, paddingTop, marginLeft }}
-              variants={titleVariants}
-              initial="hidden"
-              animate="show"
-              exit="exit"
-            >
-              {title}
-            </motion.h1>
-          )}
-        </Flex>
-      </Box>
-    </MotionFlex>
+            <AnimatePresence>
+              {title && (
+                <motion.h1
+                  style={{ fontSize, paddingTop, marginLeft }}
+                  variants={titleVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  layout
+                >
+                  {title}
+                </motion.h1>
+              )}
+            </AnimatePresence>
+          </MotionFlex>
+        </Box>
+      </MotionFlex>
+    </AnimateSharedLayout>
   );
 };

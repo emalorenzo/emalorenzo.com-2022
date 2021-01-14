@@ -14,5 +14,5 @@ export { PostCard } from './postCard';
 export { Date } from './date';
 export { Fallback } from './fallback';
 export { Callout } from './callout';
-export { LoadingChat } from './loadingChat';
+export { ChatBuble } from './chatBuble';
 export { MXDComponents } from './mdxComponents';

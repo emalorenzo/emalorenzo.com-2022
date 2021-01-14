@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Transition,
-  useAnimation,
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
+import { Transition, useAnimation, AnimatePresence } from 'framer-motion';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { MotionFlex, MotionBox } from 'components';
 
@@ -38,9 +33,14 @@ const AnimatedDot = () => {
   );
 };
 
-export const LoadingChat = () => {
+export const ChatBuble = ({ content, status }) => {
   const container = {
-    hidden: { x: 50, opacity: 0, borderRadius: '16rem' },
+    hidden: {
+      x: 50,
+      opacity: 0,
+      borderRadius: '16rem',
+      borderBottomRightRadius: '16rem',
+    },
     show: {
       x: 0,
       opacity: 1,
@@ -54,56 +54,57 @@ export const LoadingChat = () => {
     mutate: {
       width: '100%',
       borderRadius: '1rem',
+      borderBottomRightRadius: '0rem',
       transition: {
         duration: 1,
         type: 'just',
-        //     layoutX: { duration: 0.3 },
-        //     layoutY: { delay: 0.2, duration: 0.3 },
+        // layoutX: { duration: 0.3 },
+        // layoutY: { delay: 0.2, duration: 0.3 },
       },
     },
   };
 
   const controls = useAnimation();
-
-  const [loading, setLoading] = React.useState(true);
   const [readyForContent, setReadyForContent] = React.useState(false);
 
-  const changeState = () => {
-    const mutateChat = async () => {
-      setLoading(!loading);
-      await controls.start(loading ? 'mutate' : 'show');
-
-      setReadyForContent(true);
-    };
-    mutateChat();
-  };
-
   React.useEffect(() => {
-    controls.start('show');
-  }, [controls]);
+    const animateStatus = async () => {
+      if (status === 'LOADING') {
+        controls.start('show');
+      }
+      if (status === 'MESSAGE') {
+        await controls.start('mutate');
+
+        setReadyForContent(true);
+      }
+    };
+    animateStatus();
+  }, [controls, status]);
   return (
     <Flex
       w="full"
       h="full"
+      flex={status === 'LOADING' ? 1 : 0}
       justify="flex-end"
-      alignItems={loading ? 'flex-end' : 'flex-start'}
+      alignItems={status === 'LOADING' ? 'flex-end' : 'flex-start'}
     >
       <MotionFlex
-        p={loading ? 2 : 8}
+        p={status === 'LOADING' ? 2 : 4}
+        mt={2}
         minH={8}
-        maxW={80}
         alignItems="flex-end"
         borderWidth={1}
         bg="white"
         variants={container}
         initial="hidden"
         animate={controls}
-        onClick={changeState}
-        direction={loading ? 'row' : 'column'}
+        // onClick={changeState}
+        direction={status === 'LOADING' ? 'row' : 'column'}
         layout
         overflow="hidden"
+        // mt={status === 'LOADING' ? 'auto' : 2}
       >
-        {loading ? (
+        {status === 'LOADING' ? (
           <>
             <AnimatedDot />
             <AnimatedDot />
@@ -117,15 +118,7 @@ export const LoadingChat = () => {
                 animate={{ opacity: 1 }}
                 layout
               >
-                <Text as="h1" fontSize="2rem">
-                  Hey,
-                </Text>
-                <Box display="inline">
-                  <Text fontSize="1rem">
-                    Soy Ema, un fullstack dev de 🇦🇷. <br />
-                    Este es mi espacio donde comparto lo que aprendo
-                  </Text>
-                </Box>
+                {content}
               </MotionBox>
             )}
           </AnimatePresence>

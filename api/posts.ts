@@ -19,7 +19,7 @@ const postFields = `
   date,
   excerpt,
   'slug': slug.current,
-  'coverImage': coverImage.asset->url,
+  'mainImage': mainImage.asset->url,
   'categories': categories[]->.title,
 `;
 
@@ -45,7 +45,7 @@ export async function getAllPostsForHome(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post"] | order(_createdAt desc, _updatedAt desc){
       ${postFields}
-    }`);
+    }[0...3]`);
   return getUniquePosts(results);
 }
 

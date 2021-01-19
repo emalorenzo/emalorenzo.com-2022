@@ -1,54 +1,90 @@
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { Flex, Heading, Text, Button, Link, Box } from '@chakra-ui/react';
+import { Flex, Heading, Text, Button, Link, Box, Tag } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { lighten, rgba } from 'polished';
 
 import { imageBuilder } from 'lib/sanity';
+import { colors } from 'theme';
 
 const MotionHeading = motion.custom(Heading);
 const MotionFlex = motion.custom(Flex);
 
+const CARD_HEIGHT = 400;
+
 export const PostCard = ({ post }) => {
-  const { title = '', slug = '', coverImage, excerpt } = post;
-  const image = imageBuilder.image(coverImage).height(200).width(300).url();
+  const cardBackground = rgba(colors.gray[800], 0.6);
+  const {
+    title = '',
+    slug = '',
+    mainImage,
+    categories,
+    excerpt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vehicula ipsum id mauris dictum mattis. In sed pellentesque enim.',
+  } = post;
+  const image = imageBuilder
+    .image(mainImage)
+    .height(CARD_HEIGHT)
+    .width(300)
+    .url();
+  console.log('post', post);
+
+  const tags =
+    categories?.length &&
+    categories.map((categorie) => (
+      <Tag key={categorie} size="sm" borderRadius={12}>
+        {categorie}
+      </Tag>
+    ));
+
   return (
-    <MotionFlex
-      direction="row"
-      overflow="hidden"
-      bg="white"
-      borderRadius="0.5rem"
-      borderColor="gray.300"
-      _hover={{
-        borderColor: 'pink.300',
-        backgroundColor: 'pink.100',
-      }}
-      borderWidth={1}
-      m="1rem"
-      cursor="pointer"
-      height="auto"
-      alignItems="stretch"
-      p={0}
-      flexBasis={['auto', '25%']}
-      maxW="60rem"
-      layoutId={`${slug}-container`}
-    >
-      <NextLink href={`blog/${slug}`} scroll>
-        <Flex direction="column" flex={1} p={8}>
-          <MotionHeading as="h3" fontWeight="500" fontSize="2rem" layout>
+    <NextLink href={`blog/${slug}`}>
+      <MotionFlex
+        height={CARD_HEIGHT}
+        position="relative"
+        overflow="hidden"
+        justify="flex-end"
+        bg="gray.900"
+        borderRadius="0.5rem"
+        cursor="pointer"
+        alignItems="stretch"
+        w="full"
+        maxW="30rem"
+        layoutId={`${slug}-container`}
+        _hover={{
+          backgroundColor: 'gray.800',
+          boxShadow: `0 0 0 1pt ${lighten(0.2, cardBackground)}`,
+        }}
+        boxShadow="base"
+        initial={{ y: 0 }}
+      >
+        <Image
+          src={image || '/images/ema.png'}
+          alt="post illustration"
+          height={CARD_HEIGHT}
+          width={300}
+        />
+        <Flex
+          position="absolute"
+          bottom={0}
+          bg={cardBackground}
+          w="full"
+          mt="auto"
+          direction="column"
+          p={8}
+          alignItems="flex-start"
+          style={{
+            backdropFilter: 'saturate(180%) blur(20px)',
+          }}
+        >
+          {tags}
+          <Heading as="h3" fontWeight="500" fontSize="1.5rem" py={2}>
             {title}
-          </MotionHeading>
-          <Text fontWeight="500" fontSize="1rem">
+          </Heading>
+          <Text fontWeight="500" fontSize="0.9rem">
             {excerpt}
           </Text>
         </Flex>
-      </NextLink>{' '}
-      <MotionFlex
-        // transform="rotateX(19deg) rotateY(37deg) rotateZ(366deg) scale(2.5)"
-        w={300}
-        h={200}
-      >
-        {image && <Image src={image} height={200} width={300} alt={title} />}
       </MotionFlex>
-    </MotionFlex>
+    </NextLink>
   );
 };

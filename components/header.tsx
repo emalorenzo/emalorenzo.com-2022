@@ -127,14 +127,12 @@ export const Header = ({ scroll }) => {
         borderColor="gray.200"
         borderBottomWidth={1}
         overflowY="hidden"
-        layout
       >
         <Box as="nav" py={4} px={16}>
           <MotionFlex
             as="ul"
             justify="flex-start"
             align="center"
-            layout
             transition={{ duration: 2 }}
           >
             {/* header items */}
@@ -155,7 +153,6 @@ export const Header = ({ scroll }) => {
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  layout
                 >
                   {title}
                 </motion.h1>

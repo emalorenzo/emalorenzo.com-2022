@@ -1,14 +1,13 @@
 import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import { Flex, Heading, Text, Box } from '@chakra-ui/react';
+import { Flex, Heading, Box, HStack } from '@chakra-ui/react';
 import DrawBlob, { BlobType } from 'blob-animated';
 
 import * as PostsApi from 'api/posts';
-import { PostCard, MotionFlex, ChatBuble } from 'components';
+import { PostCard, MotionFlex, Chat } from 'components';
 import { artistBlobOptions, genericBlobOptions } from 'lib/blobs';
-import { useInterval } from 'hooks';
+import { chatData } from 'data/chat';
 
 const Home: NextPage = ({ allPosts, preview }: any) => {
   const artistCanvasRef = React.useRef<HTMLDivElement>();
@@ -28,80 +27,6 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
       const Blob: BlobType = new DrawBlob(options);
     }
   }, []);
-
-  const [bubleIndex, setBubleIndex] = React.useState(0);
-  const [bubleDelay, setBubleDelay] = React.useState(3000);
-
-  const bublesData = [
-    {
-      id: 1,
-      content: (
-        <>
-          <Text as="h1" fontSize="2rem">
-            Hey,
-          </Text>
-          <Box display="inline">
-            <Text fontSize="1rem">
-              Soy Ema, un fullstack dev de 🇦🇷. <br />
-              Este es mi espacio donde comparto lo que aprendo
-            </Text>
-          </Box>
-        </>
-      ),
-    },
-    {
-      id: 2,
-      content: (
-        <>
-          <Box display="inline">
-            <Text fontSize="1rem">
-              Me especializo en tecnologias mobile y web, pero me defiendo en
-              backend, devops y videojuegos
-              <br />
-            </Text>
-          </Box>
-        </>
-      ),
-    },
-    {
-      id: 3,
-      content: (
-        <>
-          <Box display="inline">
-            <Text fontSize="1rem">
-              Mi stack favorito es <br /> Next.js + ChakraUI + Framer Motion
-            </Text>
-          </Box>
-        </>
-      ),
-    },
-    {
-      id: 4,
-      content: (
-        <>
-          <Box display="inline">
-            <Text fontSize="1rem">Aguante Naruto y el ramen</Text>
-          </Box>
-        </>
-      ),
-    },
-  ];
-
-  useInterval(() => {
-    if (bubleIndex < bublesData.length) {
-      setBubleIndex(bubleIndex + 1);
-    } else {
-      setBubleDelay(null);
-    }
-  }, bubleDelay);
-
-  const renderBubles = bublesData.map(({ id, content }, i) => {
-    if (bubleIndex < i) {
-      return null;
-    }
-    const status = bubleIndex === i ? 'LOADING' : 'MESSAGE'; // +1 compact
-    return <ChatBuble key={id} status={status} content={content} />;
-  });
 
   return (
     <Flex
@@ -125,13 +50,14 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
         px={20}
         bg="gray.900"
         position="relative"
+        overflow="hidden"
       >
-        {/* <Box
+        <Box
           as="canvas"
           ref={artistCanvasRef}
           position="absolute"
           right="-20rem"
-        /> */}
+        />
 
         <Flex
           h="full"
@@ -163,9 +89,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
               </Text>
             </Box>
           </MotionFlex> */}
-          <MotionFlex w={80} direction="column" justify="flex-start">
-            {renderBubles}
-          </MotionFlex>
+          <Chat w={500} chatData={chatData} />
 
           <Box
             as="svg"
@@ -200,13 +124,15 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
       <Box position="sticky" height="1px" top={0} bg="gray.300" width="full" />
 
       {/* posts */}
-      <Flex direction="column" px={32}>
+      <Flex direction="column" p={32}>
         <Heading as="h2" mt={20}>
-          Ultimas publicaciones
+          Mas popular
         </Heading>
-        {allPosts.map((post) => {
-          return post.slug && <PostCard key={post.slug} post={post} />;
-        })}
+        <HStack spacing={5} my={5}>
+          {allPosts.map((post) => {
+            return post.slug && <PostCard key={post.slug} post={post} />;
+          })}
+        </HStack>
       </Flex>
     </Flex>
   );

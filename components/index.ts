@@ -15,4 +15,5 @@ export { Date } from './date';
 export { Fallback } from './fallback';
 export { Callout } from './callout';
 export { ChatBuble } from './chatBuble';
+export { Chat } from './chat';
 export { MXDComponents } from './mdxComponents';

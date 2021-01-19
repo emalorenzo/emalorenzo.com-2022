@@ -2,8 +2,14 @@ import React from 'react';
 import { Transition, useAnimation, AnimatePresence } from 'framer-motion';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { MotionFlex, MotionBox } from 'components';
+import { Status } from 'components/chat';
 
 const DOT_ANIM_DURATION = 0.1;
+
+interface Buble {
+  content: React.ReactElement;
+  status: Status;
+}
 
 const AnimatedDot = () => {
   const transition: Transition = {
@@ -33,13 +39,15 @@ const AnimatedDot = () => {
   );
 };
 
-export const ChatBuble = ({ content, status }) => {
+export const ChatBuble = ({ content, status }: Buble) => {
   const container = {
     hidden: {
       x: 50,
       opacity: 0,
-      borderRadius: '16rem',
       borderBottomRightRadius: '16rem',
+      borderBottomLeftRadius: '16rem',
+      borderTopRightRadius: '16rem',
+      borderTopLeftRadius: '16rem',
     },
     show: {
       x: 0,
@@ -53,8 +61,10 @@ export const ChatBuble = ({ content, status }) => {
     },
     mutate: {
       width: '100%',
-      borderRadius: '1rem',
       borderBottomRightRadius: '0rem',
+      borderBottomLeftRadius: '1rem',
+      borderTopRightRadius: '1rem',
+      borderTopLeftRadius: '1rem',
       transition: {
         duration: 1,
         type: 'just',
@@ -77,6 +87,10 @@ export const ChatBuble = ({ content, status }) => {
 
         setReadyForContent(true);
       }
+      if (status === 'COMPACT') {
+        // await controls.start('mutate');
+        // setReadyForContent(false);
+      }
     };
     animateStatus();
   }, [controls, status]);
@@ -93,16 +107,15 @@ export const ChatBuble = ({ content, status }) => {
         mt={2}
         minH={8}
         alignItems="flex-end"
-        borderWidth={1}
-        bg="white"
+        bg={status === 'MESSAGE' ? 'gray.700' : 'gray.800'}
         variants={container}
         initial="hidden"
         animate={controls}
-        // onClick={changeState}
         direction={status === 'LOADING' ? 'row' : 'column'}
-        layout
+        // borderWidth={2}
+        // borderColor={status === 'MESSAGE' ? '#FF0068' : 'gray.200'}
         overflow="hidden"
-        // mt={status === 'LOADING' ? 'auto' : 2}
+        layout // this prop makes the buble resize smootly
       >
         {status === 'LOADING' ? (
           <>
@@ -116,7 +129,7 @@ export const ChatBuble = ({ content, status }) => {
               <MotionBox
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                layout
+                exit={{ opacity: 0 }}
               >
                 {content}
               </MotionBox>

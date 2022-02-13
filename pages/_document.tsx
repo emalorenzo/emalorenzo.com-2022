@@ -3,7 +3,7 @@ import { ColorModeScript } from '@chakra-ui/react';
 
 import { theme } from 'theme';
 
-class Document extends NextDjjkocument {
+class Document extends NextDocument {
   render() {
     return (
       <Html lang="es">

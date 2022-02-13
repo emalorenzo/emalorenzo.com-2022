@@ -31,7 +31,9 @@
     "polished": "^4.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-use": "^15.3.8"
+    "react-three-fiber": "^5.3.21",
+    "react-use": "^15.3.8",
+    "three": "^0.126.1"
   },
   "devDependencies": {
     "@types/node": "^14.11.8",

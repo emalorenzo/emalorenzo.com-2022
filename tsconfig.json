@@ -20,12 +20,14 @@
     "jsx": "preserve",
     // this is the base url for the absolute imports
     "baseUrl": ".",
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js", "studio/schemas/schema.js"
+    "next.config.js",
+    "studio/schemas/schema.js"
   ],
   "exclude": [
     "node_modules"

@@ -20,13 +20,16 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     // eslint react rules (github.com/yannickcr/eslint-plugin-react)
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
+
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
     // accessibility plugin
     'plugin:jsx-a11y/recommended',
+
+    // includes eslint-plugin-react / eslint-plugin-react-hooks / eslint-plugin-next
+    // "next/core-web-vitals"
+    'plugin:@next/next/recommended',
 
     // prettier plugin here disables ESLint rules related to code styling that may disagree with prettierrc rules
     // it only turn off rules so it needs to always be at the bottom

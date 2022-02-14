@@ -18,12 +18,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // this is the base url for the absolute imports
     "baseUrl": ".",
     "incremental": true,
     "paths": {
       "@/*": ["src/*"],
-      "@/components/": ["components/*"]
     }
   },
   "include": [

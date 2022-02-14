@@ -4,8 +4,9 @@ import { Flex, Heading, Text, Button, Link, Box, Tag } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { lighten, rgba } from 'polished';
 
-import { imageBuilder } from 'lib/sanity';
-import { colors } from 'theme';
+import { colors } from '@/theme';
+
+import { imageBuilder } from 'src/lib/sanity';
 
 const MotionHeading = motion.custom(Heading);
 const MotionFlex = motion.custom(Flex);

@@ -9,8 +9,9 @@ import {
   AnimatePresence,
 } from 'framer-motion';
 
-import { EMOJIS } from 'data/emojis';
-import { useInterval, useHeader } from 'hooks';
+import { EMOJIS } from '@/data/emojis';
+
+import { useInterval, useHeader } from 'src/hooks';
 
 const MotionBox = motion.custom(Box);
 const MotionFlex = motion.custom(Flex);

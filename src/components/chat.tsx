@@ -1,8 +1,8 @@
 import React from 'react';
 import { Flex, FlexProps } from '@chakra-ui/react';
 
-import { ChatBuble } from 'components';
-import { useInterval } from 'hooks';
+import { ChatBuble } from 'src/components';
+import { useInterval } from 'src/hooks';
 
 export interface Buble {
   id: number;

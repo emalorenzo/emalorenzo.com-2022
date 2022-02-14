@@ -1,4 +1,4 @@
-import { Callout } from 'components';
+import { Callout } from 'src/components';
 
 export const MXDComponents = {
   Callout,

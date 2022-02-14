@@ -1,8 +1,9 @@
 import React from 'react';
 import { Transition, useAnimation, AnimatePresence } from 'framer-motion';
 import { Flex, Text, Box } from '@chakra-ui/react';
-import { MotionFlex, MotionBox } from 'components';
-import { Status } from 'components/chat';
+
+import { MotionFlex, MotionBox } from 'src/components';
+import { Status } from 'src/components/chat';
 
 const DOT_ANIM_DURATION = 0.1;
 

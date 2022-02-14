@@ -1,6 +1,7 @@
 import React from 'react';
 import { useElementScroll } from 'framer-motion';
 import { Flex } from '@chakra-ui/react';
+
 import { Footer } from './footer';
 import { Header } from './header';
 

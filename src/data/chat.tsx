@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
-import { Buble } from 'components/chat';
+
+import { Buble } from 'src/components/chat';
 
 export const chatData: Buble[] = [
   {

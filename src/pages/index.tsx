@@ -4,10 +4,11 @@ import Head from 'next/head';
 import { Flex, Heading, Box, HStack } from '@chakra-ui/react';
 import DrawBlob, { BlobType } from 'blob-animated';
 
-import * as PostsApi from 'api/posts';
-import { PostCard, MotionFlex, Chat } from 'components';
-import { artistBlobOptions, genericBlobOptions } from 'lib/blobs';
-import { chatData } from 'data/chat';
+import { chatData } from '@/data/chat';
+
+import * as PostsApi from 'src/api/posts';
+import { PostCard, MotionFlex, Chat } from 'src/components';
+import { artistBlobOptions, genericBlobOptions } from 'src/lib/blobs';
 
 const Home: NextPage = ({ allPosts, preview }: any) => {
   const artistCanvasRef = React.useRef<HTMLDivElement>();

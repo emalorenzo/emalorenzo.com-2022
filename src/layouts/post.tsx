@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import { PreviewAlert } from 'components';
+
+import { PreviewAlert } from 'src/components';
 
 const MotionHeading = motion.custom(Flex);
 

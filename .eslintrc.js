@@ -65,8 +65,21 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     '@typescript-eslint/ban-ts-comment': 'off',
+    'import/order': [
+      'warn',
+      {
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        'newlines-between': 'always',
+      },
+    ],
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier', 'simple-import-sort'],
+  plugins: ['import', '@typescript-eslint', 'react', 'prettier'],
   settings: {
     react: {
       version: 'detect',

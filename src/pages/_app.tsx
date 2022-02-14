@@ -2,11 +2,9 @@ import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AnimateSharedLayout } from 'framer-motion';
 
-import { Layout } from 'components';
-import { HeaderProvider } from 'context';
-import { theme } from 'theme';
-
-import '../styles/globals.css';
+import { theme } from '@/theme';
+import { Layout } from '@/components';
+import { HeaderProvider } from '@/context';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (

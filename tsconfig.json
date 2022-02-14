@@ -20,7 +20,11 @@
     "jsx": "preserve",
     // this is the base url for the absolute imports
     "baseUrl": ".",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/": ["components/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

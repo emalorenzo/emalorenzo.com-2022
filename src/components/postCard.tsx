@@ -4,17 +4,17 @@ import { Flex, Heading, Text, Button, Link, Box, Tag } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { lighten, rgba } from 'polished';
 
-import { colors } from '@/theme';
+import { COLORS } from '@/theme';
 
 import { imageBuilder } from 'src/lib/sanity';
 
-const MotionHeading = motion.custom(Heading);
-const MotionFlex = motion.custom(Flex);
+const MotionHeading = motion(Heading);
+const MotionFlex = motion(Flex);
 
 const CARD_HEIGHT = 400;
 
 export const PostCard = ({ post }) => {
-  const cardBackground = rgba(colors.gray[800], 0.6);
+  const cardBackground = rgba(COLORS.gray[800], 0.6);
   const {
     title = '',
     slug = '',

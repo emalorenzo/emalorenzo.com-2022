@@ -1,8 +1,8 @@
 import React from 'react';
-import { Flex, FlexProps } from '@chakra-ui/react';
+import styled from 'styled-components';
 
-import { ChatBuble } from 'src/components';
-import { useInterval } from 'src/hooks';
+import { ChatBuble } from '@/components';
+import { useInterval } from '@/hooks';
 
 export interface Buble {
   id: number;
@@ -17,11 +17,13 @@ interface Props {
 
 export type Status = 'LOADING' | 'MESSAGE' | 'COMPACT';
 
-export const Chat = ({
-  chatData,
-  initialDelay,
-  ...props
-}: Props & FlexProps) => {
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+export const Chat = ({ chatData, initialDelay, ...props }: Props) => {
   const [bubleIndex, setBubleIndex] = React.useState(-1);
 
   const calculateInterval = () => {
@@ -59,11 +61,7 @@ export const Chat = ({
     return <ChatBuble key={id} status={status} content={content} />;
   });
 
-  return (
-    <Flex {...props} direction="column" justify="flex-start">
-      {chat}
-    </Flex>
-  );
+  return <Wrapper {...props}>{chat}</Wrapper>;
 };
 
 Chat.defaultProps = {

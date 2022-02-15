@@ -3,37 +3,38 @@ import { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { Flex, Heading, Box, HStack } from '@chakra-ui/react';
 import DrawBlob, { BlobType } from 'blob-animated';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 import { chatData } from '@/data/chat';
+import {
+  PostCard,
+  MotionFlex,
+  Chat,
+  VideoAvatar,
+  OverflowHidden,
+} from '@/components';
 
 import * as PostsApi from 'src/api/posts';
-import { PostCard, MotionFlex, Chat } from 'src/components';
-import { artistBlobOptions, genericBlobOptions } from 'src/lib/blobs';
+
+const MotionText = styled(motion.h1)`
+  font-size: 5rem;
+  line-height: 1;
+  background: -webkit-linear-gradient(
+    0,
+    hsl(180 100% 50%),
+    hsl(0 0% 90%),
+    hsl(180 100% 50%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
 
 const Home: NextPage = ({ allPosts, preview }: any) => {
-  const artistCanvasRef = React.useRef<HTMLDivElement>();
-  const emaCanvasRef = React.useRef<HTMLCanvasElement>();
-  const emaImageRef = React.useRef<HTMLImageElement>();
-
-  React.useEffect(() => {
-    if (artistCanvasRef.current) {
-      const options = artistBlobOptions(artistCanvasRef.current);
-      const Blob: BlobType = new DrawBlob(options);
-    }
-    if (emaCanvasRef.current && emaImageRef.current) {
-      const options = genericBlobOptions(
-        emaCanvasRef.current,
-        emaImageRef.current
-      );
-      const Blob: BlobType = new DrawBlob(options);
-    }
-  }, []);
-
   return (
     <Flex
       as="main"
       direction="column"
-      overflowY="scroll"
       align="stretch"
       position="relative"
       top="-1px"
@@ -53,13 +54,6 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
         position="relative"
         overflow="hidden"
       >
-        <Box
-          as="canvas"
-          ref={artistCanvasRef}
-          position="absolute"
-          right="-20rem"
-        />
-
         <Flex
           h="full"
           w="full"
@@ -90,7 +84,28 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
               </Text>
             </Box>
           </MotionFlex> */}
-          <Chat w={500} chatData={chatData} />
+
+          <div
+            style={{
+              width: '100%',
+              border: '1px solid hsl(0 0% 90%)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <OverflowHidden>
+              <MotionText
+                initial={{ y: '1em', opacity: 0.7 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                Hey!
+              </MotionText>
+            </OverflowHidden>
+            <VideoAvatar />
+          </div>
+
+          {/* <Chat w={500} chatData={chatData} />
 
           <Box
             as="svg"
@@ -116,16 +131,12 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
               href="/images/ema.png"
               clipPath="url(#user-space)"
             />
-          </Box>
+          </Box> */}
         </Flex>
       </Flex>
 
-      {/* <canvas ref={emaCanvasRef} style={{ width: 500, height: 500 }} /> */}
-      {/* border bottom */}
-      <Box position="sticky" height="1px" top={0} bg="gray.300" width="full" />
-
       {/* posts */}
-      <Flex direction="column" p={32}>
+      {/* <Flex direction="column" p={32}>
         <Heading as="h2" mt={20}>
           Mas popular
         </Heading>
@@ -134,7 +145,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
             return post.slug && <PostCard key={post.slug} post={post} />;
           })}
         </HStack>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };

@@ -13,8 +13,8 @@ import { EMOJIS } from '@/data/emojis';
 
 import { useInterval, useHeader } from 'src/hooks';
 
-const MotionBox = motion.custom(Box);
-const MotionFlex = motion.custom(Flex);
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
 
 const titleVariants = {
   hidden: { y: 100, opacity: 0 },
@@ -35,7 +35,6 @@ const HeaderItem = ({ children, url }) => {
   ) : (
     <Text
       fontSize="1.2rem"
-      fontFamily="Coves"
       color={isSelected ? 'accent' : 'gray.500'}
       transition="all 0.3s ease-in-out"
       p={2}
@@ -124,7 +123,6 @@ export const Header = ({ scroll }) => {
       <MotionFlex
         as="header"
         direction="column"
-        width="full"
         borderColor="gray.200"
         borderBottomWidth={1}
         overflowY="hidden"

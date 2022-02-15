@@ -5,10 +5,10 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import hydrate from 'next-mdx-remote/hydrate';
 
-import * as PostsApi from 'src/api/posts';
-import { useHeader } from 'src/hooks';
-import { Fallback, MXDComponents } from 'src/components';
-import { PostLayout } from 'src/layouts';
+import { Fallback, MXDComponents } from '@/components';
+import * as PostsApi from '@/api/posts';
+import { useHeader } from '@/hooks';
+import { PostLayout } from '@/layouts';
 
 const Post: NextPage = ({ post = {}, preview }: any) => {
   const { mdxContent, title = '', ...rest } = post;

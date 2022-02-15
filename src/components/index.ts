@@ -2,8 +2,8 @@
 import { motion } from 'framer-motion';
 import { Flex, Box } from '@chakra-ui/react';
 
-const MotionFlex = motion.custom(Flex);
-const MotionBox = motion.custom(Box);
+const MotionFlex = motion(Flex);
+const MotionBox = motion(Box);
 
 export { MotionFlex, MotionBox };
 
@@ -17,3 +17,7 @@ export { Callout } from './callout';
 export { ChatBuble } from './chatBuble';
 export { Chat } from './chat';
 export { MXDComponents } from './mdxComponents';
+export { GlobalStyles } from './GlobalStyles';
+export { CodeSnippet } from './CodeSnippet';
+export { VideoAvatar } from './VideoAvatar';
+export { OverflowHidden } from './OverflowHidden';

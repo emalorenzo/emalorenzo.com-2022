@@ -1,0 +1,1 @@
+export { VideoAvatar } from './VideoAvatar';

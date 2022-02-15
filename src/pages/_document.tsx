@@ -1,7 +1,4 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
-import { ColorModeScript } from '@chakra-ui/react';
-
-import { theme } from '@/theme';
 
 class Document extends NextDocument {
   render() {
@@ -9,20 +6,18 @@ class Document extends NextDocument {
       <Html lang="es">
         <Head>
           <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Poppins:wght@400;500;700&display=swap"
-            rel="stylesheet"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
           />
           <link
-            rel="preload"
-            href="/fonts/CovesBold.otf"
-            as="font"
-            crossOrigin=""
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>

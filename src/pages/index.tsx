@@ -20,25 +20,26 @@ import * as PostsApi from 'src/api/posts';
 const MotionText = styled(motion.h1)`
   font-size: 5rem;
   line-height: 1;
-  background: -webkit-linear-gradient(
+  margin-right: 0.2em;
+  /* background: -webkit-linear-gradient(
     0,
     hsl(180 100% 50%),
     hsl(0 0% 90%),
     hsl(180 100% 50%)
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+`;
+
+const Wrapper = styled.main`
+  display: grid;
+  place-items: center;
+  height: 100%;
 `;
 
 const Home: NextPage = ({ allPosts, preview }: any) => {
   return (
-    <Flex
-      as="main"
-      direction="column"
-      align="stretch"
-      position="relative"
-      top="-1px"
-    >
+    <Wrapper>
       <Head>
         <title>Ema Lorenzo</title>
       </Head>
@@ -88,7 +89,6 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
           <div
             style={{
               width: '100%',
-              border: '1px solid hsl(0 0% 90%)',
               display: 'flex',
               alignItems: 'center',
             }}
@@ -146,7 +146,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
           })}
         </HStack>
       </Flex> */}
-    </Flex>
+    </Wrapper>
   );
 };
 

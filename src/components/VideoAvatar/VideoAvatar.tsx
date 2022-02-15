@@ -11,11 +11,15 @@ const Wrapper = styled.button`
   background-color: hsl(252 7.936507936507936% 12.352941176470589%);
   display: grid;
   place-items: center;
+
+  &:focus {
+    outline: 2px solid var(--primary-color);
+  }
 `;
 
 export const VideoAvatar = () => {
   return (
-    <Wrapper>
+    <Wrapper title="Interacts with avatar">
       <motion.video
         width="150"
         height="150"

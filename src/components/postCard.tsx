@@ -14,7 +14,7 @@ const MotionFlex = motion(Flex);
 const CARD_HEIGHT = 400;
 
 export const PostCard = ({ post }) => {
-  const cardBackground = rgba(COLORS.gray[800], 0.6);
+  const cardBackground = '#000';
   const {
     title = '',
     slug = '',

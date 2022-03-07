@@ -1,6 +1,5 @@
 import renderToString from 'next-mdx-remote/render-to-string';
 
-import { Callout } from 'src/components';
 import client, { previewClient } from 'src/lib/sanity';
 
 const getUniquePosts = (posts) => {
@@ -63,7 +62,7 @@ export async function getPost(slug, preview) {
 
   const { content, ...meta } = post;
   const mdxContent = await renderToString(content, {
-    components: { Callout },
+    components: {},
   });
 
   return { mdxContent, ...meta };

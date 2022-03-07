@@ -5,7 +5,7 @@ export const Head = () => (
     <title>Ema Lorenzo</title>
     <meta
       name="description"
-      content="👋 Hi! I'm Ema, a Frontend Developer with infinite curiosity and passion in the search for more beauty on the web."
+      content="👋 Hi! I'm Ema, a Frontend Developer with infinite curiosity in the search for more beauty on the web."
     />
     <meta
       name="keywords"
@@ -16,7 +16,7 @@ export const Head = () => (
     <meta property="og:title" content="Ema Lorenzo: Creative Developer" />
     <meta
       property="og:description"
-      content="👋 Hi! I'm Ema, a Frontend Developer with infinite curiosity and passion in the search for more beauty on the web."
+      content="👋 Hi! I'm Ema, a Frontend Developer with infinite curiosity in the search for more beauty on the web. Here I share about React, CSS, Three.js and more."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://emalorenzo.com/" />

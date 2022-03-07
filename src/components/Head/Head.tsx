@@ -20,6 +20,9 @@ export const Head = () => (
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://emalorenzo.com/" />
-    <meta property="og:image" content="https://emalorenzo.com/images/og.png" />
+    <meta
+      property="og:image"
+      content="https://emalorenzo.com/images/og-home.png"
+    />
   </NextHead>
 );

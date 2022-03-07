@@ -29,25 +29,7 @@ export const PostCard = ({ post }) => {
 
   return (
     <NextLink href={`blog/${slug}`}>
-      <motion.div
-        height={CARD_HEIGHT}
-        position="relative"
-        overflow="hidden"
-        justify="flex-end"
-        bg="gray.900"
-        borderRadius="0.5rem"
-        cursor="pointer"
-        alignItems="stretch"
-        w="full"
-        maxW="30rem"
-        layoutId={`${slug}-container`}
-        _hover={{
-          backgroundColor: 'gray.800',
-          boxShadow: `0 0 0 1pt ${cardBackground}`,
-        }}
-        boxShadow="base"
-        initial={{ y: 0 }}
-      >
+      <motion.div layoutId={`${slug}-container`} initial={{ y: 0 }}>
         <Image
           src={image || '/images/ema.png'}
           alt="post illustration"
@@ -55,25 +37,13 @@ export const PostCard = ({ post }) => {
           width={300}
         />
         <div
-          position="absolute"
-          bottom={0}
-          bg={cardBackground}
-          w="full"
-          mt="auto"
-          direction="column"
-          p={8}
-          alignItems="flex-start"
           style={{
             backdropFilter: 'saturate(180%) blur(20px)',
           }}
         >
           {tags}
-          <h3 fontWeight="500" fontSize="1.5rem" py={2}>
-            {title}
-          </h3>
-          <p fontWeight="500" fontSize="0.9rem">
-            {excerpt}
-          </p>
+          <h3>{title}</h3>
+          <p>{excerpt}</p>
         </div>
       </motion.div>
     </NextLink>

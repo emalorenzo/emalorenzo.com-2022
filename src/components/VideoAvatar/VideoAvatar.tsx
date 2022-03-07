@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-boolean-value */
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -18,14 +19,33 @@ const Wrapper = styled.button`
 `;
 
 export const VideoAvatar = () => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    if (!videoRef.current) return;
+
+    console.log('pepe', videoRef.current);
+
+    videoRef.current.addEventListener('loadeddata', () => {
+      console.log('video loaded');
+    });
+  }, [videoRef]);
   return (
     <Wrapper title="Interacts with avatar">
       <motion.video
+        ref={videoRef}
         width="150"
         height="150"
-        autoPlay={true}
-        loop
+        // autoPlay
+        // loop
         muted
+        preload="auto"
+        onLoadedData={() => {
+          console.log('video loaded pipi');
+        }}
+        onLoad={() => {
+          console.log('videoloaded');
+        }}
         initial={{ x: 150, rotate: 30 }}
         animate={{ x: 0, rotate: 0 }}
         transition={{ duration: 1 }}

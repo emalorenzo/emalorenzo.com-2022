@@ -34,8 +34,6 @@ module.exports = {
     // prettier plugin here disables ESLint rules related to code styling that may disagree with prettierrc rules
     // it only turn off rules so it needs to always be at the bottom
     'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
     'plugin:prettier/recommended',
   ],
   rules: {

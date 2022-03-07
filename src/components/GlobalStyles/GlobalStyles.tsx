@@ -11,8 +11,9 @@ export const GlobalStyles = createGlobalStyle`
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: hsl(${COLORS.backgroundHue} 100% 80%);
-      --primary-color: white;
+      --primary-color: hsl(${COLORS.primaryHue} 100% 50%);
+      --background: hsl(${COLORS.backgroundHue} 0% 8%);
+      --color: white;
     }
   }
 

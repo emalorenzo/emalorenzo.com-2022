@@ -1,15 +1,9 @@
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { Flex, Heading, Text, Button, Link, Box, Tag } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { lighten, rgba } from 'polished';
 
 import { COLORS } from '@/theme';
-
-import { imageBuilder } from 'src/lib/sanity';
-
-const MotionHeading = motion(Heading);
-const MotionFlex = motion(Flex);
+import { imageBuilder } from '@/lib/sanity';
 
 const CARD_HEIGHT = 400;
 
@@ -31,15 +25,11 @@ export const PostCard = ({ post }) => {
 
   const tags =
     categories?.length &&
-    categories.map((categorie) => (
-      <Tag key={categorie} size="sm" borderRadius={12}>
-        {categorie}
-      </Tag>
-    ));
+    categories.map((categorie) => <span key={categorie}>{categorie}</span>);
 
   return (
     <NextLink href={`blog/${slug}`}>
-      <MotionFlex
+      <motion.div
         height={CARD_HEIGHT}
         position="relative"
         overflow="hidden"
@@ -53,7 +43,7 @@ export const PostCard = ({ post }) => {
         layoutId={`${slug}-container`}
         _hover={{
           backgroundColor: 'gray.800',
-          boxShadow: `0 0 0 1pt ${lighten(0.2, cardBackground)}`,
+          boxShadow: `0 0 0 1pt ${cardBackground}`,
         }}
         boxShadow="base"
         initial={{ y: 0 }}
@@ -64,7 +54,7 @@ export const PostCard = ({ post }) => {
           height={CARD_HEIGHT}
           width={300}
         />
-        <Flex
+        <div
           position="absolute"
           bottom={0}
           bg={cardBackground}
@@ -78,14 +68,14 @@ export const PostCard = ({ post }) => {
           }}
         >
           {tags}
-          <Heading as="h3" fontWeight="500" fontSize="1.5rem" py={2}>
+          <h3 fontWeight="500" fontSize="1.5rem" py={2}>
             {title}
-          </Heading>
-          <Text fontWeight="500" fontSize="0.9rem">
+          </h3>
+          <p fontWeight="500" fontSize="0.9rem">
             {excerpt}
-          </Text>
-        </Flex>
-      </MotionFlex>
+          </p>
+        </div>
+      </motion.div>
     </NextLink>
   );
 };

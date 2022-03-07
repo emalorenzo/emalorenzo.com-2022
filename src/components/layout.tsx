@@ -2,12 +2,12 @@ import React from 'react';
 import { useElementScroll } from 'framer-motion';
 import styled from 'styled-components';
 
-import { Header } from './header';
-
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--background);
+  color: var(--color);
 `;
 
 const Content = styled.div`

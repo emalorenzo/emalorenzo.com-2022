@@ -1,7 +1,7 @@
 {
   "name": "emalorenzo.com",
   "version": "0.1.0",
-  "author": "Emanuel Lorenzo <aemalorenzo@gmail.com>",
+  "author": "Emanuel Lorenzo <@emalorenzo_>",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -17,24 +17,19 @@
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.8.3",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
+    "@next/bundle-analyzer": "^12.1.0",
+    "@react-three/drei": "^8.16.0",
+    "@react-three/fiber": "^7.0.26",
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
-    "blob-animated": "^1.2.9",
     "date-fns": "^2.16.1",
     "framer-motion": "^6.2.6",
-    "next": "^12.0.10",
-    "next-google-fonts": "^1.2.1",
+    "next": "^12.1.0",
     "next-mdx-remote": "^2.1.1",
-    "polished": "^4.0.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-three-fiber": "^5.3.21",
-    "react-use": "^15.3.8",
+    "react": "^18.0.0-rc.1",
+    "react-dom": "^18.0.0-rc.1",
     "styled-components": "^5.3.3",
-    "three": "^0.126.1"
+    "three": "^0.138.3"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.10",
@@ -50,6 +45,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.29.3",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",

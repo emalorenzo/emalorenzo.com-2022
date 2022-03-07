@@ -31,33 +31,8 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
   return (
     <Wrapper>
       <Head />
-
-      {/* hero */}
       <div>
         <div>
-          {/* chat */}
-          {/* <MotionFlex
-            direction="column"
-            p={4}
-            borderWidth={1}
-            borderRadius={16}
-            bg="white"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: 2 }}
-          >
-            <Text as="h1" fontSize="2rem">
-              Hey,
-            </Text>
-            <Box display="inline">
-              <Text fontSize="1rem">
-                Soy Ema, un fullstack dev de 🇦🇷. <br />
-                Este es mi espacio donde comparto lo que aprendo
-              </Text>
-            </Box>
-          </MotionFlex> */}
-
           <section
             style={{
               width: '100%',

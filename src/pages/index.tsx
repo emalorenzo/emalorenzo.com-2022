@@ -1,10 +1,9 @@
 import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import { PostCard, VideoAvatar, OverflowHidden } from '@/components';
+import { PostCard, VideoAvatar, OverflowHidden, Head } from '@/components';
 
 import * as PostsApi from 'src/api/posts';
 
@@ -31,9 +30,7 @@ const Wrapper = styled.main`
 const Home: NextPage = ({ allPosts, preview }: any) => {
   return (
     <Wrapper>
-      <Head>
-        <title>Ema Lorenzo</title>
-      </Head>
+      <Head />
 
       {/* hero */}
       <div>

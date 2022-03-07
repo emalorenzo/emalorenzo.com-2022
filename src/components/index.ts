@@ -10,3 +10,4 @@ export { GlobalStyles } from './GlobalStyles';
 export { CodeSnippet } from './CodeSnippet';
 export { VideoAvatar } from './VideoAvatar';
 export { OverflowHidden } from './OverflowHidden';
+export { Head } from './Head';

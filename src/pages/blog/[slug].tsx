@@ -1,12 +1,12 @@
-import { NextPage } from 'next';
-import React from 'react';
-import Head from 'next/head';
+import type { NextPage } from 'next';
 import ErrorPage from 'next/error';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import hydrate from 'next-mdx-remote/hydrate';
+import React from 'react';
 
-import { Fallback, MXDComponents } from '@/components';
 import * as PostsApi from '@/api/posts';
+import { Fallback, MXDComponents } from '@/components';
 import { useHeader } from '@/hooks';
 import { PostLayout } from '@/layouts';
 
@@ -50,13 +50,13 @@ const Post: NextPage = ({ post = {}, preview }: any) => {
 export async function getStaticPaths() {
   const posts = await PostsApi.getAllPostsWithSlug();
   return {
+    fallback: true,
     paths:
       posts?.map((p) => ({
         params: {
           slug: p.slug,
         },
       })) || [],
-    fallback: true,
   };
 }
 
@@ -64,7 +64,7 @@ export async function getStaticProps({ params, preview = false }) {
   const post = await PostsApi.getPost(params.slug, preview);
 
   return {
-    props: { preview, post },
+    props: { post, preview },
   };
 }
 

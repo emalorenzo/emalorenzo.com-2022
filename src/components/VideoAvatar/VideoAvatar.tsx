@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-boolean-value */
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 const Wrapper = styled.button`
   overflow: hidden;
@@ -46,8 +46,8 @@ export const VideoAvatar = () => {
         onLoad={() => {
           console.log('videoloaded');
         }}
-        initial={{ x: 150, rotate: 30 }}
-        animate={{ x: 0, rotate: 0 }}
+        initial={{ rotate: 30, x: 150 }}
+        animate={{ rotate: 0, x: 0 }}
         transition={{ duration: 1 }}
         whileHover={{
           scale: 1.2,

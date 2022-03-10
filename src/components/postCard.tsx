@@ -1,9 +1,9 @@
-import NextLink from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import NextLink from 'next/link';
 
-import { COLORS } from '@/theme';
 import { imageBuilder } from '@/lib/sanity';
+import { COLORS } from '@/theme';
 
 const CARD_HEIGHT = 400;
 

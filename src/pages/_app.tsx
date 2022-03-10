@@ -1,7 +1,7 @@
-import type { AppProps } from 'next/app';
 import { AnimateSharedLayout } from 'framer-motion';
+import type { AppProps } from 'next/app';
 
-import { Layout, GlobalStyles } from '@/components';
+import { GlobalStyles, Layout } from '@/components';
 import { HeaderProvider } from '@/context';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {

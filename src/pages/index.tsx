@@ -1,11 +1,10 @@
-import React from 'react';
-import { NextPage, GetStaticProps } from 'next';
 import { motion } from 'framer-motion';
+import type { GetStaticProps, NextPage } from 'next';
+import React from 'react';
 import styled from 'styled-components';
 
-import { PostCard, VideoAvatar, OverflowHidden, Head } from '@/components';
-
-import * as PostsApi from 'src/api/posts';
+import * as PostsApi from '@/api/posts';
+import { Head, OverflowHidden, PostCard, VideoAvatar } from '@/components';
 
 const MotionText = styled(motion.h1)`
   font-size: 5rem;
@@ -35,10 +34,10 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
         <div>
           <section
             style={{
-              width: '100%',
-              display: 'flex',
               alignItems: 'center',
+              display: 'flex',
               fontSize: '1rem',
+              width: '100%',
             }}
           >
             <div
@@ -50,8 +49,8 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
             >
               <OverflowHidden>
                 <MotionText
-                  initial={{ y: '1em', opacity: 0.7 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={{ opacity: 0.7, y: '1em' }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1 }}
                 >
                   Hey!

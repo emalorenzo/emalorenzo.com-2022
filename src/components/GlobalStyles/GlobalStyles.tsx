@@ -6,14 +6,14 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --primary-color: hsl(${COLORS.primaryHue} 100% 50%);
     --background: hsl(${COLORS.backgroundHue} 0% 100%);
-    --color: black;
+    --text-color: hsl(${COLORS.backgroundHue} 0% 8%);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --primary-color: hsl(${COLORS.primaryHue} 100% 50%);
       --background: hsl(${COLORS.backgroundHue} 0% 8%);
-      --color: white;
+      --text-color: hsl(${COLORS.backgroundHue} 0% 100%);
     }
   }
 

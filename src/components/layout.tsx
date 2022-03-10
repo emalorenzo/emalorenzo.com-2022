@@ -1,5 +1,5 @@
-import React from 'react';
 import { useElementScroll } from 'framer-motion';
+import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`

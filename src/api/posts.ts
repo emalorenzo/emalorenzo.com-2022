@@ -1,6 +1,6 @@
 import renderToString from 'next-mdx-remote/render-to-string';
 
-import client, { previewClient } from 'src/lib/sanity';
+import client, { previewClient } from '@/lib/sanity';
 
 const getUniquePosts = (posts) => {
   const slugs = new Set();

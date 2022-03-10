@@ -6,11 +6,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({
-  reactStrictMode: true,
+  compiler: {
+    removeConsole: true,
+    styledComponents: true,
+  },
   experimental: {
     concurrentFeatures: true,
   },
   images: {
     domains: ['cdn.sanity.io'],
   },
+  reactStrictMode: true,
 });

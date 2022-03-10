@@ -37,7 +37,7 @@ export const Head = ({
     <meta name="twitter:title" content="Ema Lorenzo: Creative Developer" />
     <meta
       name="twitter:description"
-      content="👋 Hi! I'm Ema, a Frontend Developer with infinite curiosity in the search for more beauty on the web. Here I share about React, CSS, Three.js and more."
+      content="👋 Hi! I'm Ema, a Frontend Developer in the search for more beauty on the web. Here I share about React, CSS, Three.js and more."
     />
     <meta
       name="twitter:image"

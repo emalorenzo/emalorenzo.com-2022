@@ -25,7 +25,7 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
   return (
     <Wrapper>
       <Head />
-      <section
+      {/* <section
         style={{
           alignItems: 'center',
           display: 'flex',
@@ -58,14 +58,14 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
           <p>Frontend Developer de Argentina 🇦🇷</p>
         </div>
         <VideoAvatar />
-      </section>
+      </section> */}
 
       {/* posts */}
-      <section>
+      {/* <section>
         {allPosts.map((post) => {
           return post.slug && <PostCard key={post.slug} post={post} />;
         })}
-      </section>
+      </section> */}
     </Wrapper>
   );
 };

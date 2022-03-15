@@ -48,4 +48,9 @@ export const GlobalStyles = createGlobalStyle`
     isolation: isolate;
     height: 100%;
   }
+
+  ::selection {
+    background-color: var(--primary-color);
+    color: black;
+  }
 `;

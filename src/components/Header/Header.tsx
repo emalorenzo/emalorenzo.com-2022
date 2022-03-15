@@ -29,6 +29,7 @@ const LogoWrapper = styled.span`
   width: ${({ roomForIcon }) => (roomForIcon ? '120px' : '100px')};
   transition: width 0.5s ease-in-out;
   transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '1s')};
+  user-select: none;
 
   &:hover {
     cursor: pointer;

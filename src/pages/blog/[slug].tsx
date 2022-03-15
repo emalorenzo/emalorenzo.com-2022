@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,9 +7,10 @@ import React from 'react';
 import * as PostsApi from '@/api/posts';
 import { Fallback, MXDComponents } from '@/components';
 import { useHeader } from '@/hooks';
-import { PostLayout } from '@/layouts';
+import { BlogPostLayout, MainLayout } from '@/layouts';
+import type { NextPageWithLayout } from '@/types';
 
-const Post: NextPage = ({ post = {}, preview }: any) => {
+const BlogPostPage: NextPageWithLayout = ({ post = {}, preview }: any) => {
   const { mdxContent, title = '', ...rest } = post;
 
   const router = useRouter();
@@ -42,10 +42,12 @@ const Post: NextPage = ({ post = {}, preview }: any) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PostLayout preview={preview} post={{ content, ...rest }} />
+      <BlogPostLayout preview={preview} post={{ content, ...rest }} />
     </>
   );
 };
+
+BlogPostPage.getLayout = (page) => <MainLayout>{page}</MainLayout>;
 
 export async function getStaticPaths() {
   const posts = await PostsApi.getAllPostsWithSlug();
@@ -68,4 +70,4 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 
-export default Post;
+export default BlogPostPage;

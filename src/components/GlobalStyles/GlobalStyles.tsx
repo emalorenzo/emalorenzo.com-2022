@@ -5,14 +5,14 @@ import { COLORS } from '@/theme/colors';
 export const GlobalStyles = createGlobalStyle`
   :root {
     --primary-color: hsl(${COLORS.primaryHue} 100% 50%);
-    --background: hsl(${COLORS.backgroundHue} 0% 100%);
+    --background-color: hsl(${COLORS.backgroundHue} 0% 100%);
     --text-color: hsl(${COLORS.backgroundHue} 0% 8%);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --primary-color: hsl(${COLORS.primaryHue} 100% 50%);
-      --background: hsl(${COLORS.backgroundHue} 0% 8%);
+      --background-color: hsl(${COLORS.backgroundHue} 0% 8%);
       --text-color: hsl(${COLORS.backgroundHue} 0% 100%);
     }
   }
@@ -26,11 +26,13 @@ export const GlobalStyles = createGlobalStyle`
   html, body {
     height: 100%;
     scroll-behavior: smooth;
+    background-color: var(--background-color);
   }
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
   }
   img, picture, video, canvas, svg {
     display: block;

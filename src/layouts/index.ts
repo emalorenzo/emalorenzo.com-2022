@@ -1,1 +1,2 @@
-export { PostLayout } from './post';
+export { BlogPostLayout } from './BlogPost';
+export { MainLayout } from './Main';

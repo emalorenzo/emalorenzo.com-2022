@@ -1,5 +1,5 @@
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 export const HeaderContext = React.createContext(null);
 
@@ -15,7 +15,7 @@ export const HeaderProvider = ({ children }) => {
   const [section] = decodeURL(asPath);
 
   return (
-    <HeaderContext.Provider value={{ section, title, setTitle }}>
+    <HeaderContext.Provider value={{ section, setTitle, title }}>
       {children}
     </HeaderContext.Provider>
   );

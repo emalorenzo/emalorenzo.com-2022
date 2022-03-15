@@ -28,7 +28,7 @@ const LogoWrapper = styled.span`
   height: 1.5rem;
   width: ${({ roomForIcon }) => (roomForIcon ? '120px' : '100px')};
   transition: width 0.5s ease-in-out;
-  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '1s')};
+  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '0.7s')};
   user-select: none;
 
   &:hover {
@@ -52,7 +52,7 @@ const SVGText = styled.span`
   height: 100%;
   display: flex;
   transition: left 0.5s ease-in-out;
-  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '1s')};
+  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '0.7s')};
 `;
 
 const Line = styled(motion.div)`

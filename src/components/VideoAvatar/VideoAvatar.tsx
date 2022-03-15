@@ -24,8 +24,6 @@ export const VideoAvatar = () => {
   React.useEffect(() => {
     if (!videoRef.current) return;
 
-    console.log('pepe', videoRef.current);
-
     videoRef.current.addEventListener('loadeddata', () => {
       console.log('video loaded');
     });

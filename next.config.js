@@ -7,7 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   compiler: {
-    removeConsole: true,
+    // removeConsole: true,
     styledComponents: true,
   },
   experimental: {

@@ -28,7 +28,7 @@ export const PostCard = ({ post }) => {
     categories.map((categorie) => <span key={categorie}>{categorie}</span>);
 
   return (
-    <NextLink href={`blog/${slug}`} passHref>
+    <NextLink href={`/blog/${slug}`} passHref>
       <a>
         <motion.div layoutId={`${slug}-container`} initial={{ y: 0 }}>
           <Image

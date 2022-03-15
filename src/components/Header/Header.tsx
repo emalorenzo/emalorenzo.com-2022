@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.header`
   position: fixed;
+  z-index: 2;
+  mix-blend-mode: difference;
   top: 0;
   left: 0;
   padding: 0.7rem;

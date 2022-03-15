@@ -1,3 +1,4 @@
+import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import type { GetStaticProps } from 'next';
 import React from 'react';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 import * as PostsApi from '@/api/posts';
 import { Head, OverflowHidden, PostCard, VideoAvatar } from '@/components';
 import { MainLayout } from '@/layouts';
+import { HomeScene } from '@/scenes';
 import type { NextPageWithLayout } from '@/types';
 
 const MotionText = styled(motion.h1)`
@@ -17,7 +19,7 @@ const MotionText = styled(motion.h1)`
 const Wrapper = styled.main`
   display: grid;
   place-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   height: 100%;
 `;
 
@@ -66,6 +68,14 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
           return post.slug && <PostCard key={post.slug} post={post} />;
         })}
       </section> */}
+
+      <Canvas
+        dpr={[1, 2]}
+        camera={{ fov: 90, position: [-8, 6, 5] }}
+        style={{ width: '100%' }}
+      >
+        <HomeScene />
+      </Canvas>
     </Wrapper>
   );
 };

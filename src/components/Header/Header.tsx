@@ -25,6 +25,10 @@ const LogoWrapper = styled.span`
   padding: 0.3rem 0;
   margin: 0 0.3rem;
   overflow: hidden;
+  height: 1.5rem;
+  width: ${({ roomForIcon }) => (roomForIcon ? '120px' : '100px')};
+  transition: width 0.5s ease-in-out;
+  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '1s')};
 
   &:hover {
     cursor: pointer;
@@ -39,6 +43,15 @@ const Door = styled(motion.polyline)`
   ${LogoWrapper}:hover & {
     fill-opacity: 1;
   }
+`;
+
+const SVGText = styled.span`
+  position: absolute;
+  left: ${({ roomForIcon }) => (roomForIcon ? 'calc(18px + 0.2em)' : '0')};
+  height: 100%;
+  display: flex;
+  transition: left 0.5s ease-in-out;
+  transition-delay: ${({ roomForIcon }) => (roomForIcon ? '0s' : '1s')};
 `;
 
 const Line = styled(motion.div)`
@@ -71,7 +84,7 @@ export const Header = () => {
     <Wrapper>
       <Link href="/" passHref>
         <a>
-          <LogoWrapper>
+          <LogoWrapper roomForIcon={asPath !== '/'}>
             <AnimatePresence>
               {asPath !== '/' && (
                 <motion.svg
@@ -86,9 +99,8 @@ export const Header = () => {
                   strokeLinejoin="round"
                   initial={{ y: '120%' }}
                   animate={{ y: '0%' }}
-                  exit={{ y: '120%' }}
+                  exit={{ y: '150%' }}
                   transition={{ duration: 0.5 }}
-                  style={{ marginRight: '0.2em' }}
                 >
                   <motion.path
                     d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
@@ -106,66 +118,68 @@ export const Header = () => {
                 </motion.svg>
               )}
             </AnimatePresence>
-            <motion.svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40px"
-              height="22px"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              fill="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              initial={{
-                fillOpacity: 0,
-              }}
-              animate={{ fill: 'white', fillOpacity: 1 }}
-              transition={{ delay: 1.7, duration: 1 }}
-            >
-              <motion.text
-                x="53%"
-                y="66%"
-                dominantBaseline="middle"
-                textAnchor="middle"
+            <SVGText roomForIcon={asPath !== '/'}>
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40px"
+                height="22px"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                fill="white"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 initial={{
-                  strokeDasharray: 160,
-                  strokeDashoffset: 160,
+                  fillOpacity: 0,
                 }}
-                animate={{ strokeDashoffset: 0 }}
-                transition={SVGTransition}
+                animate={{ fill: 'white', fillOpacity: 1 }}
+                transition={{ delay: 1.7, duration: 1 }}
               >
-                ema
-              </motion.text>
-            </motion.svg>
-            <motion.svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="61"
-              height="22px"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              fill="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              initial={{
-                fillOpacity: 0,
-              }}
-              animate={{ fill: 'currentColor', fillOpacity: 1 }}
-              transition={{ delay: 1.7, duration: 1 }}
-            >
-              <motion.text
-                x="47%"
-                y="66%"
-                dominantBaseline="middle"
-                textAnchor="middle"
+                <motion.text
+                  x="53%"
+                  y="66%"
+                  dominantBaseline="middle"
+                  textAnchor="middle"
+                  initial={{
+                    strokeDasharray: 160,
+                    strokeDashoffset: 160,
+                  }}
+                  animate={{ strokeDashoffset: 0 }}
+                  transition={SVGTransition}
+                >
+                  ema
+                </motion.text>
+              </motion.svg>
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="61"
+                height="22px"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                fill="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 initial={{
-                  strokeDasharray: 160,
-                  strokeDashoffset: 160,
+                  fillOpacity: 0,
                 }}
-                animate={{ strokeDashoffset: 0 }}
-                transition={SVGTransition}
+                animate={{ fill: 'currentColor', fillOpacity: 1 }}
+                transition={{ delay: 1.7, duration: 1 }}
               >
-                lorenzo
-              </motion.text>
-            </motion.svg>
+                <motion.text
+                  x="47%"
+                  y="66%"
+                  dominantBaseline="middle"
+                  textAnchor="middle"
+                  initial={{
+                    strokeDasharray: 160,
+                    strokeDashoffset: 160,
+                  }}
+                  animate={{ strokeDashoffset: 0 }}
+                  transition={SVGTransition}
+                >
+                  lorenzo
+                </motion.text>
+              </motion.svg>
+            </SVGText>
             <Line />
           </LogoWrapper>
         </a>

@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import type { GetStaticProps } from 'next';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -76,6 +77,11 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
       >
         <HomeScene />
       </Canvas>
+      <Link href="/basic-scene" passHref>
+        <a>
+          <span style={{ color: 'currentcolor' }}>Basic Scene</span>
+        </a>
+      </Link>
     </Wrapper>
   );
 };

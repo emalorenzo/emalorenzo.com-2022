@@ -1,17 +1,25 @@
-import { Box, Environment, OrbitControls } from '@react-three/drei';
-import { extend, useFrame } from '@react-three/fiber';
+import {
+  Box,
+  ContactShadows,
+  Environment,
+  OrbitControls,
+  Plane,
+  Sky,
+} from '@react-three/drei';
+import { Canvas, extend, useFrame } from '@react-three/fiber';
 import { MeshLine, MeshLineMaterial } from 'meshline';
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';
 
+import { MainLayout } from '@/layouts';
+
 extend({ MeshLine, MeshLineMaterial });
 
-function Fatline() {
+function MeshCurve() {
   const line = useRef<MeshLine>();
   const material = useRef<MeshLineMaterial>();
 
   const [ratio] = useState(() => 0.1 + 0.5 * Math.random());
-
   // Calculate wiggly curve
   const [curve] = useState(() => {
     return new THREE.CatmullRomCurve3([
@@ -22,7 +30,7 @@ function Fatline() {
       new THREE.Vector3(6, 2, 0),
     ]).getPoints(50);
   });
-  // Hook into the render loop and decrease the materials dash-offset
+  // Mave the curve forward allong the path
   useFrame(() => {
     material.current.uniforms.dashOffset.value -= 0.001;
   });
@@ -46,7 +54,7 @@ function Fatline() {
   );
 }
 
-export const HomeScene = () => {
+const Scene = () => {
   const speed = 0.2;
   const boxRef = React.useRef<THREE.Mesh>(null!);
 
@@ -68,31 +76,43 @@ export const HomeScene = () => {
     boxRef.current.position.y = point.y;
     boxRef.current.position.z = point.z;
   });
-
   return (
     <>
-      <OrbitControls
-        makeDefault
-        enableZoom={false}
-        autoRotate
-        enableRotate={false}
-        rotateSpeed={2}
-      />
-      <Environment
-        preset="city" // TODO: replace for lights in prod since it's expensive
-      />
-      <color attach="background" args={['#141414']} />
-      <fog attach="fog" args={['#141414', 3, 25]} />
-      <gridHelper position={[0, 0, 0]}>
-        <meshStandardMaterial attach="material" color="white" />
-      </gridHelper>
-
-      <Fatline />
+      <MeshCurve />
       <group>
         <Box ref={boxRef} position={[0, 2, 0]}>
           <meshStandardMaterial attach="material" color="white" />
+          <arrowHelper />
         </Box>
       </group>
+      <ContactShadows
+        rotation-x={Math.PI / 2}
+        position={[0, 0, 0]}
+        opacity={0.3}
+        width={15}
+        height={15}
+        blur={1}
+        far={5}
+      />
     </>
   );
 };
+
+const FollowPath = () => {
+  return (
+    <Canvas dpr={[1, 2]} camera={{ fov: 90, position: [-3, 10, 5] }}>
+      <OrbitControls makeDefault maxPolarAngle={Math.PI / 2} />
+      <Environment
+        preset="city" // TODO: replace for lights in prod since it's expensive
+      />
+      <gridHelper position={[0, 0, 0]}>
+        <meshStandardMaterial attach="material" color="white" />
+      </gridHelper>
+      <Scene />
+    </Canvas>
+  );
+};
+
+FollowPath.getLayout = (page) => <MainLayout>{page}</MainLayout>;
+
+export default FollowPath;

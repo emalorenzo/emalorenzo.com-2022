@@ -79,10 +79,6 @@ const SVGTransition: TransitionDefinition = {
 export const Header = () => {
   const { asPath } = useRouter();
 
-  useEffect(() => {
-    console.log(asPath);
-  }, [asPath]);
-
   return (
     <Wrapper>
       <Link href="/" passHref>

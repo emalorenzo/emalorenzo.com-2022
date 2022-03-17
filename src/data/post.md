@@ -19,3 +19,6 @@ https://threejs.org/docs/#api/en/extras/curves/CatmullRomCurve3
 
 render 3d curve
 https://threejs.org/docs/#api/en/extras/curves/SplineCurve
+
+// TODO: usar un array de curvas https://threejs.org/docs/#api/en/extras/core/CurvePath
+// en caso de que necesitemos crear un path dinamico

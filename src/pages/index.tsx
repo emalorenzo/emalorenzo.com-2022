@@ -25,6 +25,7 @@ const Wrapper = styled.main`
 `;
 
 const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
+  console.log('render HomePage');
   return (
     <Wrapper>
       <Head />
@@ -80,6 +81,11 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
       <Link href="/basic-scene" passHref>
         <a>
           <span style={{ color: 'currentcolor' }}>Basic Scene</span>
+        </a>
+      </Link>
+      <Link href="/follow-path" passHref>
+        <a>
+          <span style={{ color: 'currentcolor' }}>Follow Path</span>
         </a>
       </Link>
     </Wrapper>

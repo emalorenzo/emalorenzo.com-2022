@@ -14,15 +14,15 @@ const BlogPostPage: NextPageWithLayout = ({ post = {}, preview }: any) => {
   const { mdxContent, title = '', ...rest } = post;
 
   const router = useRouter();
-  const { setTitle } = useHeader();
+  // const { setTitle } = useHeader();
 
-  React.useEffect(() => {
-    setTitle(title);
+  // React.useEffect(() => {
+  //   setTitle(title);
 
-    return () => {
-      setTitle('');
-    };
-  }, [setTitle, title]);
+  //   return () => {
+  //     setTitle('');
+  //   };
+  // }, [setTitle, title]);
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;

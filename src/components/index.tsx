@@ -2,6 +2,7 @@ import { CodeSnippet } from './CodeSnippet';
 
 export { Date } from './Date';
 export { Fallback } from './Fallback';
+export { Footer } from './Footer';
 export { GlobalStyles } from './GlobalStyles';
 export { Head } from './Head';
 export { Header } from './Header';

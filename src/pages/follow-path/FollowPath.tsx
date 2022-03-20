@@ -6,7 +6,7 @@ import {
   Plane,
   Sky,
 } from '@react-three/drei';
-import { Canvas, extend, useFrame } from '@react-three/fiber';
+import { extend, useFrame } from '@react-three/fiber';
 import { MeshLine, MeshLineMaterial } from 'meshline';
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';

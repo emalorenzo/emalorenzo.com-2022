@@ -6,7 +6,7 @@ import {
   Plane,
   Sky,
 } from '@react-three/drei';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 
 import { MainLayout } from '@/layouts';
@@ -24,6 +24,23 @@ const Scene = () => {
 
   return (
     <>
+      <Environment preset="city" />
+      <Sky
+        distance={4000}
+        sunPosition={[0, 1, 0]}
+        inclination={0}
+        azimuth={0.25}
+      />
+      <gridHelper position={[0, 0, 0]}>
+        <meshStandardMaterial attach="material" color="white" />
+      </gridHelper>
+      <Plane
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -0.001, 0]}
+        args={[10, 10]}
+      >
+        <meshStandardMaterial attach="material" />
+      </Plane>
       <Box ref={boxRef} position={[0, 2, 0]}>
         <meshStandardMaterial attach="material" color="white" />
         <arrowHelper />
@@ -43,28 +60,11 @@ const Scene = () => {
 
 const BasicScene = () => {
   return (
-    <Canvas dpr={[1, 2]} camera={{ fov: 90, position: [-3, 10, 5] }}>
-      <OrbitControls makeDefault />
-      <Environment preset="city" />
-      <Sky
-        distance={4000}
-        sunPosition={[0, 1, 0]}
-        inclination={0}
-        azimuth={0.25}
-      />
-      <gridHelper position={[0, 0, 0]}>
-        <meshStandardMaterial attach="material" color="white" />
-      </gridHelper>
-      <Plane
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -0.001, 0]}
-        args={[10, 10]}
-      >
-        <meshStandardMaterial attach="material" />
-      </Plane>
-
-      <Scene />
-    </Canvas>
+    <>
+      <h1>Basic Scene</h1>
+      {/* @ts-ignore */}
+      <Scene r3f />
+    </>
   );
 };
 

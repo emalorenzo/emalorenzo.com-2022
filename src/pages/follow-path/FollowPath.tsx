@@ -78,6 +78,10 @@ const Scene = () => {
   });
   return (
     <>
+      <Environment preset="city" />
+      <gridHelper position={[0, 0, 0]}>
+        <meshStandardMaterial attach="material" color="white" />
+      </gridHelper>
       <MeshCurve />
       <group>
         <Box ref={boxRef} position={[0, 2, 0]}>
@@ -100,16 +104,10 @@ const Scene = () => {
 
 const FollowPath = () => {
   return (
-    <Canvas dpr={[1, 2]} camera={{ fov: 90, position: [-3, 10, 5] }}>
-      <OrbitControls makeDefault maxPolarAngle={Math.PI / 2} />
-      <Environment
-        preset="city" // TODO: replace for lights in prod since it's expensive
-      />
-      <gridHelper position={[0, 0, 0]}>
-        <meshStandardMaterial attach="material" color="white" />
-      </gridHelper>
-      <Scene />
-    </Canvas>
+    <>
+      <h1>Follow Path</h1>
+      <Scene r3f />
+    </>
   );
 };
 

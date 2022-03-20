@@ -71,13 +71,7 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
         })}
       </section> */}
 
-      <Canvas
-        dpr={[1, 2]}
-        camera={{ fov: 90, position: [-8, 6, 5] }}
-        style={{ width: '100%' }}
-      >
-        <HomeScene />
-      </Canvas>
+      <HomeScene r3f />
       <Link href="/basic-scene" passHref>
         <a>
           <span style={{ color: 'currentcolor' }}>Basic Scene</span>

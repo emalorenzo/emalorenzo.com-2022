@@ -71,6 +71,7 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
         })}
       </section> */}
 
+      {/* @ts-ignore */}
       <HomeScene r3f />
       <Link href="/basic-scene" passHref>
         <a>

@@ -106,6 +106,7 @@ const FollowPath = () => {
   return (
     <>
       <h1>Follow Path</h1>
+      {/* @ts-ignore */}
       <Scene r3f />
     </>
   );

@@ -1,34 +1,20 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
-import React from 'react';
-import styled from 'styled-components';
+import { ErrorLayout } from '@/layouts';
+import type { NextPageWithLayout } from '@/types';
 
-const Wrapper = styled.main`
-  height: 100%;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 1rem;
-
-  a {
-    color: var(--text-color);
-  }
-`;
-
-const ErrorPage: NextPage = () => {
+const NotFoundErrorPage: NextPageWithLayout = () => {
   return (
-    <Wrapper>
-      <Head>
-        <title>Ema Lorenzo</title>
-      </Head>
-
-      <h1>There is no content here</h1>
-      <Link href="/" passHref>
-        <a>Go back to home</a>
-      </Link>
-    </Wrapper>
+    <>
+      <h1>This link does nothing here</h1>
+    </>
   );
 };
 
-export default ErrorPage;
+NotFoundErrorPage.getLayout = (page) => <ErrorLayout>{page}</ErrorLayout>;
+
+export const getStaticProps = () => ({
+  props: {
+    title: '🕵🏼 - 404',
+  },
+});
+
+export default NotFoundErrorPage;

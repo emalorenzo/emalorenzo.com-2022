@@ -1,20 +1,13 @@
-import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
-import { useStore } from '@/lib/store';
+const Wrapper = styled.div`
+  overflow: auto;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+`;
 
 export const DomLayout = ({ children }) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    useStore.setState({ dom: ref });
-  }, []);
-
-  return (
-    <div
-      className="absolute top-0 left-0 z-10 w-screen h-screen overflow-hidden dom"
-      ref={ref}
-    >
-      {children}
-    </div>
-  );
+  return <Wrapper>{children}</Wrapper>;
 };

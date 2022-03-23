@@ -1,5 +1,6 @@
 import { CodeSnippet } from './CodeSnippet';
 
+export { Balance } from './Balance';
 export { Date } from './Date';
 export { Fallback } from './Fallback';
 export { Footer } from './Footer';

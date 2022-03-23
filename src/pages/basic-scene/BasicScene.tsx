@@ -61,7 +61,7 @@ const Scene = () => {
 const BasicScene = () => {
   return (
     <>
-      <h1>Basic Scene</h1>
+      <h1 style={{ margin: '5rem' }}>Basic Scene</h1>
       {/* @ts-ignore */}
       <Scene r3f />
     </>

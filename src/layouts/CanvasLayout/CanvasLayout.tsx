@@ -26,15 +26,19 @@ export const CanvasLayout = ({ children }) => {
     <Canvas
       mode="concurrent"
       style={{
+        pointerEvents: 'none',
         position: 'absolute',
         top: 0,
       }}
       onCreated={(state) => state.events.connect(dom.current)}
       // test
       dpr={[1, 2]}
-      camera={{ fov: 90, position: [-8, 6, 5] }}
+      camera={{
+        fov: 75,
+        position: [0, 0, 5],
+      }}
     >
-      <Control />
+      {/* <Control /> */}
       <Preload all />
       {children}
     </Canvas>

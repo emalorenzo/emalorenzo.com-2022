@@ -1,3 +1,4 @@
+import { Html } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import type { GetStaticProps } from 'next';
@@ -8,14 +9,22 @@ import styled from 'styled-components';
 import * as PostsApi from '@/api/posts';
 import { Head, OverflowHidden, PostCard, VideoAvatar } from '@/components';
 import { MainLayout } from '@/layouts';
+import { useStore } from '@/lib/store';
 import { HomeScene } from '@/scenes';
-import type { NextPageWithLayout } from '@/types';
+import type { NextPageWithLayout, Scene } from '@/types';
 
 const MotionText = styled(motion.h1)`
   font-size: 5rem;
   line-height: 1;
   margin-right: 0.3em;
 `;
+
+const HtmlScene: Scene = () => (
+  <Html>
+    <h1>Hey</h1>
+    <p>This are my examples</p>
+  </Html>
+);
 
 const Wrapper = styled.main`
   display: grid;
@@ -24,12 +33,30 @@ const Wrapper = styled.main`
   height: 100%;
 `;
 
+const BoxWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+`;
+
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  display: grid;
+  place-content: center;
+
+  &:hover {
+    background-color: #020202;
+  }
+`;
+
 const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
-  console.log('render HomePage');
   return (
-    <Wrapper>
-      <Head />
-      {/* <section
+    <>
+      <Wrapper>
+        <Head />
+        {/* <section
         style={{
           alignItems: 'center',
           display: 'flex',
@@ -63,27 +90,52 @@ const HomePage: NextPageWithLayout = ({ allPosts }: any) => {
         </div>
         <VideoAvatar />
       </section> */}
-
-      {/* posts */}
-      {/* <section>
+        {/* posts */}
+        {/* <section>
         {allPosts.map((post) => {
           return post.slug && <PostCard key={post.slug} post={post} />;
         })}
       </section> */}
-
-      {/* @ts-ignore */}
+        <BoxWrapper>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Box
+              key={i}
+              style={{
+                zIndex: i % 2 === 0 ? 1 : 0,
+              }}
+            >
+              i
+            </Box>
+          ))}
+        </BoxWrapper>
+        {/* @ts-ignore */}
+        {/* <div
+          style={{
+            padding: '5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '400px',
+            backgroundColor: 'black',
+            height: '150vh',
+            // position: 'relative',
+            left: '30%',
+          }}
+        >
+          <Link href="/basic-scene" passHref>
+            <a>
+              <span style={{ color: 'white' }}>Basic Scene</span>
+            </a>
+          </Link>
+          <Link href="/follow-path" passHref>
+            <a>
+              <span style={{ color: 'white' }}>Follow Path</span>
+            </a>
+          </Link>
+        </div> */}
+      </Wrapper>
       <HomeScene r3f />
-      <Link href="/basic-scene" passHref>
-        <a>
-          <span style={{ color: 'currentcolor' }}>Basic Scene</span>
-        </a>
-      </Link>
-      <Link href="/follow-path" passHref>
-        <a>
-          <span style={{ color: 'currentcolor' }}>Follow Path</span>
-        </a>
-      </Link>
-    </Wrapper>
+      <HtmlScene r3f />
+    </>
   );
 };
 
